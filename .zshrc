@@ -224,7 +224,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias ll='ls -l'
     alias la='ls -A'
     alias lla='ls -lA'
-    alias nf="neofetch"
+    alias neo="neofetch"
     alias l='ls -CF'
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
