@@ -221,11 +221,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
     alias rm="rm -rf"
-    alias ll='ls -l'
+    alias ll='ls -lA'
     alias la='ls -A'
-    alias lla='ls -lA'
-    alias nf="neofetch"
     alias l='ls -CF'
+    alias lls="ls -lAsh"
+    alias nf="neofetch"
+    alias SS="sudo systemctl"		
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -254,7 +255,7 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-#source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
+source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
