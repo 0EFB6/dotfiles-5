@@ -227,7 +227,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias lls="ls -lAsh"
     alias nf="neofetch"
     alias SS="sudo systemctl"		
-
+    alias cat="bat"
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -258,4 +258,3 @@ fi
 source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
