@@ -215,6 +215,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
+    alias vim="nvim"
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -228,6 +229,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias nf="neofetch"
     alias SS="sudo systemctl"		
     alias cat="bat"
+    alias q="gnome-session-quit"
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -258,3 +260,4 @@ fi
 source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export EDITOR=/usr/bin/nano
