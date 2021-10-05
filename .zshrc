@@ -41,7 +41,7 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
@@ -227,9 +227,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias l='ls -CF'
     alias lls="ls -lAsh"
     alias nf="neofetch"
-    alias SS="sudo systemctl"		
+    alias SS="sudo systemctl"
     alias cat="bat"
     alias q="gnome-session-quit"
+    alias df="df -h -x tmpfs -x devtmpfs -x squashfs"
+    alias p="sudo pacman"
+    alias gp="git add *; git commit -m 'commit'; git push"
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -259,5 +262,16 @@ fi
 
 source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
 source /usr/share/doc/pkgfile/command-not-found.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 export EDITOR=/usr/bin/nano
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
