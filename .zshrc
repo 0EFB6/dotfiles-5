@@ -232,7 +232,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias q="gnome-session-quit"
     alias df="df -h -x tmpfs -x devtmpfs -x squashfs"
     alias p="sudo pacman"
-    alias gp="git add *; git commit -m 'commit'; git push"
+    alias gp="git add * .*; git commit -m 'commit'; git push"
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
