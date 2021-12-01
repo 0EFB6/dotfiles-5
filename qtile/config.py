@@ -1,16 +1,33 @@
-# import gi
-# gi.require_version('Gtk', '3.0')
-# from gi.repository import Gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 import os
 import subprocess
-# from typing import List
 from libqtile import bar, layout, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.command import lazy
-# from window_icon import window_icon
+
 
 mod = "mod4"
 terminal = "alacritty"
+
+
+def window_icon(qtile):
+    group = qtile.current_screen.group
+    for win in group.windows:
+        icon_name = subprocess.check_output("/home/ervin/.scripts/window_icon").decode('utf-8')
+        if icon_name:
+            theme = Gtk.IconTheme.get_default()
+            found_icons = set()
+            for res in range(0, 512, 2):
+                icon = theme.lookup_icon(icon_name, res, 0)
+                if icon:
+                    found_icons.add(icon.get_filename())
+            found_icons = sorted(found_icons, key=str.lower)
+            if found_icons:
+                return found_icons[0]
+            else:
+                return [icon_name, "was not found"]
 
 
 def focus_previous_group(qtile):
@@ -31,56 +48,36 @@ def focus_next_group(qtile):
         qtile.current_screen.set_group(next_group)
 
 
-def send_win_to_previous_group(qtile,lazy):
+def window_to_prev_group(qtile):
+    i = qtile.groups.index(qtile.current_group)
+    if qtile.current_window is not None and i != 0:
+        qtile.current_window.togroup(qtile.groups[i - 1].name)
+
+
+def window_to_next_group(qtile):
+    i = qtile.groups.index(qtile.current_group)
+    if qtile.current_window is not None and i != 6:
+        qtile.current_window.togroup(qtile.groups[i + 1].name)
+
+
+def toggle_minimize_all(qtile):
     group = qtile.current_screen.group
-    group_index = qtile.groups.index(group)
-    previous_group = group.get_previous_group()
-    previous_group_index = qtile.groups.index(previous_group)
-    if previous_group_index < group_index:
-        lazy.window.togroup(previous_group)
+    for win in group.windows:
+        win.minimized = not win.minimized
+        if win.minimized is False:
+            group.layout_all()
 
-def send_win_to_next_group(qtile,lazy):
-    group = qtile.current_screen.group
-    group_index = qtile.groups.index(group)
-    next_group = group.get_next_group()
-    next_group_index = qtile.groups.index(next_group)
-    if next_group_index > group_index:
-        lazy.window.togroup(next_group)
-# class SwapGroup(object):
-
-#     def __init__(self):
-#         self.group = None
-#         self.last_group = None
-
-#     def group_by_name(self, groups, name):
-#         for group in groups:
-#             if group.name == name:
-#                 return group
-
-#     def __call__(self, qtile):
-#         cg = qtile.current_screen.group
-#         self.group = cg.get_next_group(skip_empty=True)
-#         group = self.group_by_name(qtile.groups, self.group)
-#         if cg != group:
-#             qtile.current_screen.set_group(group)
-#             self.last_group = cg
-#         elif self.last_group:
-#             qtile.current_screen.set_group(self.last_group)
-
-def unminimize_all(qtile, lazy):
-    group = qtile.current_screen.group
-    lazy.group.unminimize_all(group)
 
 keys = [
-    Key([mod],      "Up",       lazy.group.prev_window()),
-    Key([mod],      "Down",     lazy.group.next_window()),
-    Key([mod],      "Left",     lazy.function(focus_previous_group)),
-    Key([mod],      "Right",    lazy.function(focus_next_group)),
 
-    Key([mod, "mod1"], "Left",      lazy.function(send_win_to_previous_group)),
-    Key([mod, "mod1"], "Right",     lazy.function(send_win_to_next_group)),
-    # Key(["mod1"],   "Tab",        lazy.function(SwapGroup())),
-    Key([mod],      "d",            lazy.function(unminimize_all)),
+    # Different stuff to control windows and groups
+    Key([mod],         "Up",        lazy.group.prev_window()),
+    Key([mod],         "Down",      lazy.group.next_window()),
+    Key([mod],         "Left",      lazy.function(focus_previous_group)),
+    Key([mod],         "Right",     lazy.function(focus_next_group)),
+    Key([mod, "mod1"], "Left",      lazy.function(window_to_prev_group)),
+    Key([mod, "mod1"], "Right",     lazy.function(window_to_next_group)),
+    Key([mod], "d",                 lazy.function(toggle_minimize_all)),
 
     Key([mod, "control"], "Right",
         lazy.layout.grow_right(),
@@ -105,31 +102,35 @@ keys = [
         lazy.layout.increase_nmaster(),
         ),
 
+
+    # Layout
     Key([mod, "shift"], "Up",    lazy.layout.shuffle_up()),
     Key([mod, "shift"], "Left",  lazy.layout.shuffle_left()),
     Key([mod, "shift"], "Right", lazy.layout.shuffle_right()),
     Key([mod, "shift"], "Down",  lazy.layout.shuffle_down()),
-    Key([mod],          "Tab",   lazy.next_layout()),
-    Key([mod, "shift"], "Tab",   lazy.prev_layout()),
     Key([mod], "n",              lazy.layout.normalize()),
+    Key([mod], "Tab",            lazy.next_layout()),
+    Key([mod, "shift"], "Tab",   lazy.prev_layout()),
 
+    # Window
     Key([],     "KP_Enter", lazy.window.toggle_fullscreen()),
     Key([mod],  "KP_Enter", lazy.window.toggle_floating()),
+    Key([mod],  "q",        lazy.window.kill()),
 
-    Key([mod], "q", lazy.window.kill()),
+    # Qtile
+    Key([mod, "shift"], "r",    lazy.restart()),
+    Key([mod, "shift"], "q",    lazy.shutdown()),
+    Key([mod], "r",             lazy.reload_config()),
+    Key([mod], "v",             lazy.validate_config()),
 
-    Key([mod, "shift"], "r", lazy.restart()),
-    Key([mod, "shift"], "q", lazy.shutdown()),
-    Key([mod], "r", lazy.reload_config()),
-    Key([mod], "v", lazy.validate_config()),
-
+    # Apps
     Key([mod], "Return",
         lazy.spawn(terminal)),
     Key([mod], "f",
         lazy.spawn("nemo")),
-    # Key([mod], "a",
-    #     lazy.spawn("nwggrid")),
-    Key([mod], "a",
+    Key([mod], "w",
+        lazy.spawn("rofi -mode window -show window")),
+    Key([mod], "space",
         lazy.spawn("rofi -show drun -terminal alacritty -show-icons")),
     Key([mod], "x",
         lazy.spawn("nwgbar")),
@@ -138,9 +139,9 @@ keys = [
     Key([mod], "t",
         lazy.group['scratchpad'].dropdown_toggle('term')),
 
+    # DE keys
     Key([],    "Print",
         lazy.spawn("flameshot screen -p /home/ervin/Pictures")),
-
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("/home/ervin/.scripts/vol_ctl +5%")),
     Key([], "XF86AudioMute",
@@ -297,12 +298,12 @@ layouts = [
 
 widget_defaults = dict(
     font='CodeNewRoman Nerd Font Mono Bold',
-    fontsize=15,
-    padding=3,
+    fontsize=17,
+    padding=2,
 )
 extension_defaults = widget_defaults.copy()
 
-colors_nord = ["#2e3440",   # 0
+colors_nord = ["#2e3440", # 0
                "#3b4252",   # 1
                "#434c5e",   # 2
                "#4c566a",   # 3
@@ -318,8 +319,11 @@ colors_nord = ["#2e3440",   # 0
                "#ebcb8b",   # 13
                "#a3be8c",   # 14
                "#b48ead",   # 15
+
                ]
-checkupdate='checkupdates | wc -l'
+
+def no_text(text):
+    return ""
 
 screens = [
     Screen(
@@ -354,31 +358,59 @@ screens = [
                     padding_y=7,
                     rounded="true"
                     ),
-                widget.Spacer(
-                    length=3),
-                widget.GenPollText(
-                    update_interval=0.1,
-                    foreground=colors_nord[10],
-                    func=lambda:
-                    subprocess.check_output("/home/ervin/.scripts/window_name").decode("utf-8")
+                # widget.Spacer(
+                #     length=3),
+                # widget.Image(
+                #     filename=window_icon(qtile),
+                #     margin=5,
+                #     update_interval=0.1),
+                # widget.GenPollText(
+                #     update_interval=0.1,
+                #     foreground=colors_nord[10],
+                #     func=lambda:
+                #     subprocess.check_output("/home/ervin/.scripts/window_name").decode("utf-8")
+                #     ),
+                widget.TaskList(
+                    parse_text=no_text,
+                    text_minimized="",
+                    text_maximized="",
+                    text_floating=""
                     ),
-                widget.Spacer(
-                    length=bar.STRETCH
+                widget.WidgetBox(
+                    widgets=[
+                        widget.Clock(
+                            format='%A, %B %d - ',
+                            padding=0,
+                            foreground=colors_nord[6],
+                            ),
+                    ],
+                    foreground=colors_nord[6],
+                    text_closed="\uf017 ",
+                    text_open="\uf017 ",
+                    font='Font Awesome 5 Free Solid',
                     ),
                 widget.Clock(
-                    format='%A, %B %d - %H:%M',
-                    padding=2,
-                    foreground=colors_nord[10],
-                    # fontsize=18
+                    format='%H:%M',
+                    padding=0,
+                    foreground=colors_nord[6],
                     ),
                 widget.Spacer(
                     length=bar.STRETCH
                     ),
                 widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                widget.TextBox(
                     font='Font Awesome 5 Free Solid',
                     text="",
                     fontsize=15,
-                    foreground=colors_nord[5]
+                    foreground=colors_nord[5],
+                    background=colors_nord[0],
                     ),
                 widget.GenPollText(
                     update_interval=60,
@@ -388,8 +420,16 @@ screens = [
                     {'Button1':
                         lambda: qtile.cmd_spawn("alacritty -e yay")}
                     ),
-                widget.Spacer(
-                    length=15),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                # widget.Spacer(
+                #     length=5),
                 widget.TextBox(
                     font='Font Awesome 5 Free Solid',
                     text="",
@@ -398,8 +438,14 @@ screens = [
                 widget.Volume(
                     foreground=colors_nord[15]
                     ),
-                widget.Spacer(
-                    length=15),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
                 widget.TextBox(
                     font='Font Awesome 5 Free Solid',
                     text="",
@@ -413,13 +459,26 @@ screens = [
                     backlight_name="intel_backlight",
                     foreground=colors_nord[13]
                     ),
-                widget.Spacer(
-                    length=15),
-                widget.Systray(
-                    icon_size=19
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
                     ),
-                widget.Spacer(
-                    length=15),
+                widget.Systray(
+                    icon_size=19,
+                    padding=0
+                    ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
                 widget.Battery(
                     format="{percent:2.0%}",
                     update_interval=5,
@@ -438,10 +497,26 @@ screens = [
                     font="Font Awesome 5 Free Solid",
                     fontsize=11,
                     func=lambda:
-                    subprocess.check_output("/home/ervin/.scripts/bat_charging_icon").decode('utf-8')
+                    subprocess.check_output(
+                        "/home/ervin/.scripts/bat_charging_icon").decode('utf-8')
                 ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                widget.TextBox(
+                    text='',
+                    font="Font Awesome 5 Free Solid",
+                    mouse_callbacks=
+                    {'Button1': lambda: qtile.cmd_reload_config()},
+                    foreground=colors_nord[11]
+                    ),
                 widget.Spacer(
-                    length=15),
+                    length=5),
                 widget.TextBox(
                     text="",
                     font="Font Awesome 5 Free Solid",
@@ -450,12 +525,18 @@ screens = [
                     foreground=colors_nord[11]
                     ),
                 widget.Spacer(
-                    length=15),
+                    length=5),
             ],
-            30,
+            26,
             margin=5,
             background=colors_nord[0]
         ),
+        # left=bar.Bar(
+        #     [
+                
+        #     ],
+        #     30
+        #     )
     ),
 ]
 

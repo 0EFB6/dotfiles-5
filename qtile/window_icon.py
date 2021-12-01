@@ -15,6 +15,6 @@ def window_icon():
                 found_icons.add(icon.get_filename())
         found_icons = sorted(found_icons, key=str.lower)
         if found_icons:
-            print(found_icons[0])
+            return found_icons[0]
         else:
-            print(icon_name, "was not found")
+            return [icon_name, "was not found"]
