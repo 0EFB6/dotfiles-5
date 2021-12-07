@@ -46,7 +46,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # History configurations
-HISTFILE=~/.zsh_history
+HISTFILE=~/.local/state/zsh/history
 HISTSIZE=1000
 SAVEHIST=2000
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -112,8 +112,8 @@ configure_prompt() {
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
 # START KALI CONFIG VARIABLES
-PROMPT_ALTERNATIVE=twoline
-NEWLINE_BEFORE_PROMPT=yes
+PROMPT_ALTERNATIVE=oneline
+NEWLINE_BEFORE_PROMPT=no
 # STOP KALI CONFIG VARIABLES
 
 if [ "$color_prompt" = yes ]; then
@@ -210,22 +210,18 @@ precmd() {
 
 # enable color support of ls, less and man, and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias vim="nvim"
+    test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
+    alias vim="lvim"
+    alias nvim="lvim"
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
     alias rm="rm -rf"
-    alias ll='ls -lA'
-    alias la='ls -A'
-    alias l='ls -CF'
-    alias lls="ls -lAsh"
+    alias ls='exa --icons'
+    alias la='ls -a'
+    alias ll="ls -aBghlS"
     alias nf="neofetch"
     alias SS="sudo systemctl"
     alias cat="bat"
@@ -233,6 +229,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias df="df -h -x tmpfs -x devtmpfs -x squashfs"
     alias p="sudo pacman"
     alias gp="git add * .*; git commit -m 'commit'; git push"
+    alias o="xdg-open"
+    alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+    alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
+    alias sway="sway --my-next-gpu-wont-be-nvidia"
+    alias s="/home/ervin/.scripts/"
+    alias c="/home/ervin/.config"
+
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -260,10 +263,6 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-source /usr/share/zsh/plugins/zsh-abbr/zsh-abbr.zsh
-source /usr/share/doc/pkgfile/command-not-found.zsh
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-export EDITOR=/usr/bin/nano
 # pip zsh completion start
 function _pip_completion {
   local words cword
@@ -275,3 +274,39 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
+
+export PATH=/home/ervin/.scripts/:/home/ervin/.config/qtile:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
+
+#XDG Base Directory specification
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_DATA_HOME=/home/ervin/.local/share
+export XDG_CACHE_HOME=/home/ervin/.cache
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
+export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+
+#VARIABLES
+export TERMINAL=/usr/bin/terminator
+export EDITOR=lvim
+# LS_COLORS+=':tw=01;34:ow=01;34:st=01;34'
+# export __NV_PRIME_RENDER_OFFLOAD=1
+# export __GLX_VENDOR_LIBRARY_NAME="nvidia"
+# export __VK_LAYER_NV_optimus="NVIDIA_only"
+
+#sourcing
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /home/ervin/www/src/zsh-abbr/zsh-abbr.zsh
+
+#startup programs
+if [[ $(ps -p $(ps -o 'ppid=' -p $$) | grep tty | tr -s " "|cut -d" " -f4) == "terminator" ]];then
+	neofetch
+    	xhost si:localuser:root > /dev/null
+fi
+
