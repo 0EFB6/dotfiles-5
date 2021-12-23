@@ -1,6 +1,3 @@
-import gi
-gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook, qtile
@@ -10,24 +7,6 @@ from libqtile.command import lazy
 
 mod = "mod4"
 terminal = "alacritty"
-
-
-def window_icon(qtile):
-    group = qtile.current_screen.group
-    for win in group.windows:
-        icon_name = subprocess.check_output("/home/ervin/.scripts/window_icon").decode('utf-8')
-        if icon_name:
-            theme = Gtk.IconTheme.get_default()
-            found_icons = set()
-            for res in range(0, 512, 2):
-                icon = theme.lookup_icon(icon_name, res, 0)
-                if icon:
-                    found_icons.add(icon.get_filename())
-            found_icons = sorted(found_icons, key=str.lower)
-            if found_icons:
-                return found_icons[0]
-            else:
-                return [icon_name, "was not found"]
 
 
 def focus_previous_group(qtile):
@@ -252,7 +231,8 @@ def assign_app_group(client):
         "gnome-control-center",
         "blueman-manager",
         "nitrogen",
-        "pling-store"
+        "pling-store",
+        "Xfce4-power-manager-settings"
         ]
 
     wm_class = client.window.get_wm_class()[0]
@@ -303,7 +283,7 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-colors_nord = ["#2e3440", # 0
+colors_nord = ["#2e3440",   # 0
                "#3b4252",   # 1
                "#434c5e",   # 2
                "#4c566a",   # 3
@@ -358,23 +338,9 @@ screens = [
                     padding_y=7,
                     rounded="true"
                     ),
-                # widget.Spacer(
-                #     length=3),
-                # widget.Image(
-                #     filename=window_icon(qtile),
-                #     margin=5,
-                #     update_interval=0.1),
-                # widget.GenPollText(
-                #     update_interval=0.1,
-                #     foreground=colors_nord[10],
-                #     func=lambda:
-                #     subprocess.check_output("/home/ervin/.scripts/window_name").decode("utf-8")
-                #     ),
                 widget.TaskList(
                     parse_text=no_text,
-                    text_minimized="",
-                    text_maximized="",
-                    text_floating=""
+                    icon_size=20
                     ),
                 widget.WidgetBox(
                     widgets=[
@@ -428,8 +394,6 @@ screens = [
                     padding=0,
                     fontsize=39
                     ),
-                # widget.Spacer(
-                #     length=5),
                 widget.TextBox(
                     font='Font Awesome 5 Free Solid',
                     text="",
@@ -458,18 +422,6 @@ screens = [
                     padding=0,
                     backlight_name="intel_backlight",
                     foreground=colors_nord[13]
-                    ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
-                widget.Systray(
-                    icon_size=19,
-                    padding=0
                     ),
                 widget.TextBox(
                     text='/',
@@ -508,6 +460,26 @@ screens = [
                     padding=0,
                     fontsize=39
                     ),
+                widget.WidgetBox(
+                    widgets=[
+                        widget.Systray(
+                            icon_size=20,
+                            padding=2
+                        ),
+                    ],
+                    foreground=colors_nord[11],
+                    text_closed="",
+                    text_open="",
+                    font='Font Awesome 5 Free Solid'
+                    ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
                 widget.TextBox(
                     text='',
                     font="Font Awesome 5 Free Solid",
@@ -531,12 +503,6 @@ screens = [
             margin=5,
             background=colors_nord[0]
         ),
-        # left=bar.Bar(
-        #     [
-                
-        #     ],
-        #     30
-        #     )
     ),
 ]
 
