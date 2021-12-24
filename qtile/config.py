@@ -460,18 +460,18 @@ screens = [
                     padding=0,
                     fontsize=39
                     ),
-                widget.WidgetBox(
-                    widgets=[
+                # widget.WidgetBox(
+                #     widgets=[
                         widget.Systray(
-                            icon_size=20,
+                            icon_size=19,
                             padding=2
                         ),
-                    ],
-                    foreground=colors_nord[11],
-                    text_closed="",
-                    text_open="",
-                    font='Font Awesome 5 Free Solid'
-                    ),
+                    # ],
+                    # foreground=colors_nord[11],
+                    # text_closed="",
+                    # text_open="",
+                    # font='Font Awesome 5 Free Solid'
+                    # ),
                 widget.TextBox(
                     text='/',
                     font='Font Awesome 5 Free Solid',
@@ -499,7 +499,7 @@ screens = [
                 widget.Spacer(
                     length=5),
             ],
-            26,
+            25,
             margin=5,
             background=colors_nord[0]
         ),
