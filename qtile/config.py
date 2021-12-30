@@ -54,9 +54,9 @@ keys = [
     Key([mod],         "Down",      lazy.group.next_window()),
     Key([mod],         "Left",      lazy.function(focus_previous_group)),
     Key([mod],         "Right",     lazy.function(focus_next_group)),
+    Key([mod],         "d",         lazy.function(toggle_minimize_all)),
     Key([mod, "mod1"], "Left",      lazy.function(window_to_prev_group)),
     Key([mod, "mod1"], "Right",     lazy.function(window_to_next_group)),
-    Key([mod], "d",                 lazy.function(toggle_minimize_all)),
 
     Key([mod, "control"], "Right",
         lazy.layout.grow_right(),
@@ -83,24 +83,24 @@ keys = [
 
 
     # Layout
-    Key([mod, "shift"], "Up",    lazy.layout.shuffle_up()),
-    Key([mod, "shift"], "Left",  lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "Right", lazy.layout.shuffle_right()),
-    Key([mod, "shift"], "Down",  lazy.layout.shuffle_down()),
-    Key([mod], "n",              lazy.layout.normalize()),
-    Key([mod], "Tab",            lazy.next_layout()),
-    Key([mod, "shift"], "Tab",   lazy.prev_layout()),
+    Key([mod], "n",               lazy.layout.normalize()),
+    Key([mod], "Tab",             lazy.next_layout()),
+    Key([mod,  "shift"], "Tab",   lazy.prev_layout()),
+    Key([mod,  "shift"], "Up",    lazy.layout.shuffle_up()),
+    Key([mod,  "shift"], "Left",  lazy.layout.shuffle_left()),
+    Key([mod,  "shift"], "Right", lazy.layout.shuffle_right()),
+    Key([mod,  "shift"], "Down",  lazy.layout.shuffle_down()),
 
     # Window
-    Key([],     "KP_Enter", lazy.window.toggle_fullscreen()),
-    Key([mod],  "KP_Enter", lazy.window.toggle_floating()),
-    Key([mod],  "q",        lazy.window.kill()),
+    Key([],    "KP_Enter",        lazy.window.toggle_fullscreen()),
+    Key([mod], "KP_Enter",        lazy.window.toggle_floating()),
+    Key([mod], "q",               lazy.window.kill()),
 
     # Qtile
-    Key([mod, "shift"], "r",    lazy.restart()),
-    Key([mod, "shift"], "q",    lazy.shutdown()),
-    Key([mod], "r",             lazy.reload_config()),
-    Key([mod], "v",             lazy.validate_config()),
+    Key([mod,  "shift"], "r",     lazy.restart()),
+    Key([mod,  "shift"], "q",     lazy.shutdown()),
+    Key([mod],  "r",              lazy.reload_config()),
+    Key([mod],  "v",              lazy.validate_config()),
 
     # Apps
     Key([mod], "Return",
@@ -113,13 +113,15 @@ keys = [
         lazy.spawn("rofi -show drun -terminal alacritty -show-icons")),
     Key([mod], "x",
         lazy.spawn("nwgbar")),
-    Key([mod], "c",
+    Key([mod], "b",
         lazy.spawn("google-chrome-stable")),
     Key([mod], "t",
         lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key([mod], "y",
+        lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
 
     # DE keys
-    Key([],    "Print",
+    Key([], "Print",
         lazy.spawn("flameshot screen -p /home/ervin/Pictures")),
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("/home/ervin/.scripts/vol_ctl +5%")),
@@ -191,8 +193,10 @@ def assign_app_group(client):
         "org.gnome.Nautilus",
         "Pcmanfm",
         "Pcmanfm-qt",
+        "evince",
         ]
     d[group_names[1]] = [
+        "www.youtube.com",
         "Spotify",
         "Pragha",
         "Clementine",
@@ -253,27 +257,30 @@ layouts = [
     layout.Bsp(
         margin=5,
         fontsize=20,
-        border_width=2,
-        border_focus="#acadf9"),
+        border_width=1,
+        border_focus="#bcadf9"
+        ),
     layout.Zoomy(  # !!CHECK DOCS FOR THIS ONE!!
         margin=5,
         columnwidth=150,
         fontsize=20,
-        border_width=2),
+        border_width=1
+        ),
     layout.Max(
         margin=5,
         fontsize=20,
-        border_width=2,
-        border_focus="#acadf9"),
+        ),
     layout.MonadTall(
         margin=5,
         fontsize=20,
-        border_width=2,
-        border_focus="#acadf9"),
+        border_width=1,
+        border_focus="#bcadf9"
+        ),
     layout.MonadWide(
         margin=5,
-        border_width=2,
-        border_focus="#acadf9"),
+        border_width=1,
+        border_focus="#bcadf9"
+        ),
 ]
 
 widget_defaults = dict(
@@ -303,7 +310,7 @@ colors_nord = ["#2e3440",   # 0
                ]
 
 def no_text(text):
-    return ""
+    return ''
 
 screens = [
     Screen(
@@ -340,7 +347,11 @@ screens = [
                     ),
                 widget.TaskList(
                     parse_text=no_text,
-                    icon_size=20
+                    highlight_method='block',
+                    icon_size=19,
+                    border=colors_nord[3],
+                    margin_y=1,
+                    rounded=False,
                     ),
                 widget.WidgetBox(
                     widgets=[
@@ -460,18 +471,10 @@ screens = [
                     padding=0,
                     fontsize=39
                     ),
-                # widget.WidgetBox(
-                #     widgets=[
-                        widget.Systray(
-                            icon_size=19,
-                            padding=2
-                        ),
-                    # ],
-                    # foreground=colors_nord[11],
-                    # text_closed="",
-                    # text_open="",
-                    # font='Font Awesome 5 Free Solid'
-                    # ),
+                widget.Systray(
+                    icon_size=19,
+                    padding=2
+                ),
                 widget.TextBox(
                     text='/',
                     font='Font Awesome 5 Free Solid',
@@ -499,8 +502,8 @@ screens = [
                 widget.Spacer(
                     length=5),
             ],
-            25,
-            margin=5,
+            26,
+            margin=3,
             background=colors_nord[0]
         ),
     ),
@@ -518,7 +521,7 @@ mouse = [
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    home = os.path.expanduser('~/.scripts/autostart.sh')
     subprocess.call([home])
 
 follow_mouse_focus = True
