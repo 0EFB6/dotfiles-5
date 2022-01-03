@@ -91,8 +91,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 configure_prompt() {
-    prompt_symbol=㉿
-    [ "$EUID" -eq 0 ] && prompt_symbol=💀
+    prompt_symbol="@"
     case "$PROMPT_ALTERNATIVE" in
         twoline)
             PROMPT=$'%F{%(#.blue.green)}┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n$prompt_symbol%m%b%F{%(#.blue.green)})-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}]\n└─%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
@@ -112,7 +111,7 @@ configure_prompt() {
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
 # START KALI CONFIG VARIABLES
-PROMPT_ALTERNATIVE=oneline
+PROMPT_ALTERNATIVE=twoline
 NEWLINE_BEFORE_PROMPT=no
 # STOP KALI CONFIG VARIABLES
 
@@ -220,21 +219,25 @@ if [ -x /usr/bin/dircolors ]; then
     alias ip='ip --color=auto'
     alias rm="rm -rf"
     alias ls='exa --icons'
+    alias l='ls -a'
     alias la='ls -a'
-    alias ll="ls -aBghlS"
+    alias ll="ls -aghl"
     alias nf="neofetch"
     alias SS="sudo systemctl"
     alias cat="bat"
     alias q="gnome-session-quit"
     alias df="df -h -x tmpfs -x devtmpfs -x squashfs"
     alias p="sudo pacman"
-    alias gp="git add * .*; git commit -m 'commit'; git push"
+    alias gp="git add .; git commit -m 'commit'; git push"
     alias o="xdg-open"
     alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
     alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
     alias sway="sway --my-next-gpu-wont-be-nvidia"
-    alias s="/home/ervin/.scripts/"
-    alias c="/home/ervin/.config"
+    alias s="$HOME/.scripts/"
+    alias c="$HOME/.config"
+    alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080&& ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
+    alias neo="neo -D"
+    alias neo-ru="neo --color=red --charset=cyrillic -m 'IN SOVIET RUSSIA, COMPUTER PROGRAMS YOU'" 
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -249,14 +252,12 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
 
-
-
-# # enable auto-suggestions based on the history
-# if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-#     . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#     # change suggestion color
-#     ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=magenta,bold'
-# fi
+# enable auto-suggestions based on the history
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # change suggestion color
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=magenta,bold'
+fi
 
 # enable command-not-found if installed
 if [ -f /etc/zsh_command_not_found ]; then
@@ -280,8 +281,8 @@ export PATH=/home/ervin/.scripts/:/home/ervin/.config/qtile:/home/ervin/.local/b
 #XDG Base Directory specification
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CONFIG_HOME=$HOME/.config/
-export XDG_DATA_HOME=/home/ervin/.local/share
-export XDG_CACHE_HOME=/home/ervin/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
@@ -293,7 +294,7 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 #VARIABLES
-export TERMINAL=/usr/bin/terminator
+export TERMINAL=alacritty
 export EDITOR=lvim
 # LS_COLORS+=':tw=01;34:ow=01;34:st=01;34'
 # export __NV_PRIME_RENDER_OFFLOAD=1
@@ -302,11 +303,11 @@ export EDITOR=lvim
 
 #sourcing
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /home/ervin/www/src/zsh-abbr/zsh-abbr.zsh
+source /home/ervin/www/src/cloned/zsh-abbr/zsh-abbr.zsh
 
 #startup programs
-if [[ $(ps -p $(ps -o 'ppid=' -p $$) | grep tty | tr -s " "|cut -d" " -f4) == "terminator" ]];then
-	neofetch
-    	xhost si:localuser:root > /dev/null
+if [[ $(ps -p $(ps -o 'ppid=' -p $$) | grep tty | tr -s " "|cut -d" " -f4) == "alacritty" ]];then
+	fet.sh
+  xhost si:localuser:root > /dev/null
 fi
 
