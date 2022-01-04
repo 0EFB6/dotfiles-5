@@ -233,8 +233,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
     alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
     alias sway="sway --my-next-gpu-wont-be-nvidia"
-    alias s="$HOME/.scripts/"
-    alias c="$HOME/.config"
+    alias s="/home/ervin/.scripts/"
+    alias c="/home/ervin/.config"
     alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080&& ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
     alias neo="neo -D"
     alias neo-ru="neo --color=red --charset=cyrillic -m 'IN SOVIET RUSSIA, COMPUTER PROGRAMS YOU'" 
@@ -276,13 +276,13 @@ function _pip_completion {
 compctl -K _pip_completion pip
 # pip zsh completion end
 
-export PATH=/home/ervin/.scripts/:/home/ervin/.config/qtile:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=/home/ervin/.scripts:/home/ervin/.config/qtile:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
 
 #XDG Base Directory specification
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CONFIG_HOME=$HOME/.config/
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=/home/ervin/.local/share
+export XDG_CACHE_HOME=/home/ervin/.cache
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
@@ -294,7 +294,7 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 #VARIABLES
-export TERMINAL=alacritty
+export TERMINAL=/usr/bin/terminator
 export EDITOR=lvim
 # LS_COLORS+=':tw=01;34:ow=01;34:st=01;34'
 # export __NV_PRIME_RENDER_OFFLOAD=1

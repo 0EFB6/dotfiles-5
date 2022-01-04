@@ -138,7 +138,9 @@ keys = [
     Key([], "XF86MonBrightnessUp",
         lazy.spawn("/home/ervin/.scripts/brightness_ctl up")),
     Key([], "XF86MonBrightnessDown",
-        lazy.spawn("/home/ervin/.scripts/brightness_ctl down"))
+        lazy.spawn("/home/ervin/.scripts/brightness_ctl down")),
+    Key([mod], "space",
+        lazy.widget["keyboardlayout"].next_keyboard()),
 ]
 
 groups = []
@@ -463,6 +465,18 @@ screens = [
                     subprocess.check_output(
                         "/home/ervin/.scripts/bat_charging_icon").decode('utf-8')
                 ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                widget.KeyboardLayout(
+                    foreground=colors_nord[9],
+                    configured_keyboards=['us','ro']
+                    ),
                 widget.TextBox(
                     text='/',
                     font='Font Awesome 5 Free Solid',
