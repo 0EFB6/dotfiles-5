@@ -218,7 +218,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias diff='diff --color=auto'
     alias ip='ip --color=auto'
     alias rm="rm -rf"
-    alias ls='exa --icons'
+    alias ls='exa --icons -H'
     alias l='ls -a'
     alias la='ls -a'
     alias ll="ls -aghl"
@@ -294,7 +294,7 @@ export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
 #VARIABLES
-export TERMINAL=/usr/bin/terminator
+export TERMINAL=alacritty
 export EDITOR=lvim
 # LS_COLORS+=':tw=01;34:ow=01;34:st=01;34'
 # export __NV_PRIME_RENDER_OFFLOAD=1
