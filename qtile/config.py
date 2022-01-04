@@ -139,7 +139,7 @@ keys = [
         lazy.spawn("/home/ervin/.scripts/brightness_ctl up")),
     Key([], "XF86MonBrightnessDown",
         lazy.spawn("/home/ervin/.scripts/brightness_ctl down")),
-    Key([mod], "space",
+    Key(["mod1"], "space",
         lazy.widget["keyboardlayout"].next_keyboard()),
 ]
 
@@ -313,6 +313,12 @@ colors_nord = ["#2e3440",   # 0
 
 def no_text(text):
     return ''
+
+
+def reload():
+    qtile.cmd_reload_config()
+    qtile.cmd_spawn('/home/ervin/.scripts/change_wallpaper.sh')
+
 
 screens = [
     Screen(
@@ -501,7 +507,7 @@ screens = [
                     text='',
                     font="Font Awesome 5 Free Solid",
                     mouse_callbacks=
-                    {'Button1': lambda: qtile.cmd_reload_config()},
+                    {'Button1': lambda: reload()},
                     foreground=colors_nord[11]
                     ),
                 widget.Spacer(
