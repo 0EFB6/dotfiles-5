@@ -276,19 +276,19 @@ function _pip_completion {
 compctl -K _pip_completion pip
 # pip zsh completion end
 
-export PATH=/home/ervin/.scripts:/home/ervin/.config/qtile:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=/home/ervin/www/src/cloned/gnirehtet:/home/ervin/.scripts:/home/ervin/.config/qtile:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
 
 #XDG Base Directory specification
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_CONFIG_HOME=$HOME/.config/
+export XDG_STATE_HOME="$HOME"/.local/state
+export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_DATA_HOME=/home/ervin/.local/share
 export XDG_CACHE_HOME=/home/ervin/.cache
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export OCTAVE_HISTFILE="$XDG_CACHE_HOME/octave-hsts"
-export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME/octave/octaverc"
+export OCTAVE_HISTFILE="$XDG_CACHE_HOME"/octave-hsts
+export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME"/octave/octaverc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
@@ -305,9 +305,13 @@ export EDITOR=lvim
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /home/ervin/www/src/cloned/zsh-abbr/zsh-abbr.zsh
 
-#startup programs
-if [[ $(ps -p $(ps -o 'ppid=' -p $$) | grep tty | tr -s " "|cut -d" " -f4) == "alacritty" ]];then
+#checking for tty or not
+if [[ "$(tty | sed -e 's:/dev/::' | sed -e 's/[0-9]//')" == "tty" ]]
+then
+	alias ls="exa -H"
+	alias nvim="nvim"
+	alias vim="nvim"
+else	
 	fet.sh
-  xhost si:localuser:root > /dev/null
+	xhost si:localuser:root > /dev/null
 fi
-

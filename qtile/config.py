@@ -382,74 +382,6 @@ screens = [
                 widget.Spacer(
                     length=bar.STRETCH
                     ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
-                widget.TextBox(
-                    font='Font Awesome 5 Free Solid',
-                    text="",
-                    fontsize=15,
-                    foreground=colors_nord[5],
-                    background=colors_nord[0],
-                    ),
-                widget.GenPollText(
-                    update_interval=60,
-                    foreground=colors_nord[5],
-                    func=lambda: subprocess.check_output("/home/ervin/.scripts/chkup").decode("utf-8"),
-                    mouse_callbacks=
-                    {'Button1':
-                        lambda: qtile.cmd_spawn("alacritty -e yay")}
-                    ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
-                widget.TextBox(
-                    font='Font Awesome 5 Free Solid',
-                    text="",
-                    foreground=colors_nord[15]
-                    ),
-                widget.Volume(
-                    foreground=colors_nord[15]
-                    ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
-                widget.TextBox(
-                    font='Font Awesome 5 Free Solid',
-                    text="",
-                    padding=2,
-                    foreground=colors_nord[13]
-                    ),
-                widget.Spacer(
-                    length=3),
-                widget.Backlight(
-                    padding=0,
-                    backlight_name="intel_backlight",
-                    foreground=colors_nord[13]
-                    ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
                 widget.Battery(
                     format="{percent:2.0%}",
                     update_interval=5,
@@ -461,7 +393,7 @@ screens = [
                     font="Font Awesome 5 Free Solid",
                     func=lambda:
                     subprocess.check_output("/home/ervin/.scripts/bat_icon").decode('utf-8')
-                ),
+                    ),
                 widget.GenPollText(
                     update_interval=1,
                     foreground=colors_nord[14],
@@ -470,18 +402,6 @@ screens = [
                     func=lambda:
                     subprocess.check_output(
                         "/home/ervin/.scripts/bat_charging_icon").decode('utf-8')
-                ),
-                widget.TextBox(
-                    text='/',
-                    font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
-                    ),
-                widget.KeyboardLayout(
-                    foreground=colors_nord[9],
-                    configured_keyboards=['us','ro']
                     ),
                 widget.TextBox(
                     text='/',
@@ -491,24 +411,107 @@ screens = [
                     padding=0,
                     fontsize=39
                     ),
-                widget.Systray(
-                    icon_size=19,
-                    padding=2
-                ),
-                widget.TextBox(
-                    text='/',
+                widget.WidgetBox(
+                    widgets=[
+                        widget.TextBox(
+                            text='/',
+                            font='Font Awesome 5 Free Solid',
+                            foreground=colors_nord[3],
+                            background=colors_nord[0],
+                            padding=0,
+                            fontsize=39
+                        ),
+                        widget.TextBox(
+                            font='Font Awesome 5 Free Solid',
+                            text="",
+                            fontsize=15,
+                            foreground=colors_nord[5],
+                            background=colors_nord[0],
+                            ),
+                        widget.GenPollText(
+                            update_interval=3600,
+                            foreground=colors_nord[5],
+                            func=lambda: subprocess.check_output("/home/ervin/.scripts/chkup").decode("utf-8"),
+                            mouse_callbacks=
+                            {'Button1':
+                                lambda: qtile.cmd_spawn("alacritty -e yay")}
+                            ),
+                        widget.TextBox(
+                            text='/',
+                            font='Font Awesome 5 Free Solid',
+                            foreground=colors_nord[3],
+                            background=colors_nord[0],
+                            padding=0,
+                            fontsize=39
+                            ),
+                        widget.TextBox(
+                            font='Font Awesome 5 Free Solid',
+                            text="",
+                            foreground=colors_nord[15]
+                            ),
+                        widget.Volume(
+                            foreground=colors_nord[15]
+                            ),
+                        widget.TextBox(
+                            text='/',
+                            font='Font Awesome 5 Free Solid',
+                            foreground=colors_nord[3],
+                            background=colors_nord[0],
+                            padding=0,
+                            fontsize=39
+                            ),
+                        widget.TextBox(
+                            font='Font Awesome 5 Free Solid',
+                            text="",
+                            padding=2,
+                            foreground=colors_nord[13]
+                            ),
+                        widget.Spacer(
+                            length=3),
+                        widget.Backlight(
+                            padding=0,
+                            backlight_name="intel_backlight",
+                            foreground=colors_nord[13]
+                            ),
+                        widget.TextBox(
+                            text='/',
+                            font='Font Awesome 5 Free Solid',
+                            foreground=colors_nord[3],
+                            background=colors_nord[0],
+                            padding=0,
+                            fontsize=39
+                            ),
+                        widget.Systray(
+                            icon_size=19,
+                            padding=2
+                        ),
+                        widget.TextBox(
+                            text='/',
+                            font='Font Awesome 5 Free Solid',
+                            foreground=colors_nord[3],
+                            background=colors_nord[0],
+                            padding=0,
+                            fontsize=39
+                            ),
+                        widget.TextBox(
+                            text='',
+                            font="Font Awesome 5 Free Solid",
+                            mouse_callbacks=
+                            {'Button1': lambda: reload()},
+                            foreground=colors_nord[10],
+                            padding=0),
+                    ],
+                    foreground=colors_nord[10],
+                    text_closed="",
+                    text_open="",
                     font='Font Awesome 5 Free Solid',
-                    foreground=colors_nord[3],
-                    background=colors_nord[0],
-                    padding=0,
-                    fontsize=39
                     ),
-                widget.TextBox(
-                    text='',
-                    font="Font Awesome 5 Free Solid",
-                    mouse_callbacks=
-                    {'Button1': lambda: reload()},
-                    foreground=colors_nord[11]
+                widget.Spacer(
+                    length=5),
+                widget.GenPollText(
+                    update_interval=3600,
+                    foreground=colors_nord[13],
+                    func=lambda: subprocess.check_output("/home/ervin/.scripts/uptime.sh").decode("utf-8")
                     ),
                 widget.Spacer(
                     length=5),
