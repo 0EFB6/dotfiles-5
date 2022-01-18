@@ -296,10 +296,6 @@ export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 #VARIABLES
 export TERMINAL=alacritty
 export EDITOR=lvim
-# LS_COLORS+=':tw=01;34:ow=01;34:st=01;34'
-# export __NV_PRIME_RENDER_OFFLOAD=1
-# export __GLX_VENDOR_LIBRARY_NAME="nvidia"
-# export __VK_LAYER_NV_optimus="NVIDIA_only"
 
 #sourcing
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

@@ -382,6 +382,22 @@ screens = [
                 widget.Spacer(
                     length=bar.STRETCH
                     ),
+                widget.TextBox(
+                    font='Font Awesome 5 Free Solid',
+                    text="",
+                    foreground=colors_nord[15]
+                    ),
+                widget.Volume(
+                    foreground=colors_nord[15]
+                    ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
                 widget.Battery(
                     format="{percent:2.0%}",
                     update_interval=5,
@@ -435,22 +451,6 @@ screens = [
                             mouse_callbacks=
                             {'Button1':
                                 lambda: qtile.cmd_spawn("alacritty -e yay")}
-                            ),
-                        widget.TextBox(
-                            text='/',
-                            font='Font Awesome 5 Free Solid',
-                            foreground=colors_nord[3],
-                            background=colors_nord[0],
-                            padding=0,
-                            fontsize=39
-                            ),
-                        widget.TextBox(
-                            font='Font Awesome 5 Free Solid',
-                            text="",
-                            foreground=colors_nord[15]
-                            ),
-                        widget.Volume(
-                            foreground=colors_nord[15]
                             ),
                         widget.TextBox(
                             text='/',
