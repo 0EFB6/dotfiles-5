@@ -1,7 +1,8 @@
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.config import Click, Drag, Group, Key, Match
+from libqtile.config import Screen, ScratchPad, DropDown
 from libqtile.command import lazy
 
 
@@ -311,6 +312,7 @@ colors_nord = ["#2e3440",   # 0
 
                ]
 
+
 def no_text(text):
     return ''
 
@@ -452,6 +454,21 @@ screens = [
                             {'Button1':
                                 lambda: qtile.cmd_spawn("alacritty -e yay")}
                             ),
+                        # widget.TextBox(
+                        #     text='/',
+                        #     font='Font Awesome 5 Free Solid',
+                        #     foreground=colors_nord[3],
+                        #     background=colors_nord[0],
+                        #     padding=0,
+                        #     fontsize=39
+                        #     ),
+                        # widget.TextBox(
+                        #     text="",
+                        #     font="Font Awesome 5 Free Solid",
+                        #     mouse_callbacks=
+                        #     {'Button1': lambda: qtile.cmd_spawn("alacritty -e /home/ervin/.scripts/bw.sh")},
+                        #     foreground=colors_nord[11]
+                        #     ),
                         widget.TextBox(
                             text='/',
                             font='Font Awesome 5 Free Solid',
@@ -549,7 +566,7 @@ def autostart():
 
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout =layout.Floating(
     float_rules=[
         *layout.Floating.default_float_rules,
@@ -559,8 +576,7 @@ floating_layout =layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
-    ],
-    border_color="#fff")
+    ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

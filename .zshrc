@@ -235,9 +235,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias sway="sway --my-next-gpu-wont-be-nvidia"
     alias s="/home/ervin/.scripts/"
     alias c="/home/ervin/.config"
-    alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080&& ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
+    alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080 && ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
     alias neo="neo -D"
     alias neo-ru="neo --color=red --charset=cyrillic -m 'IN SOVIET RUSSIA, COMPUTER PROGRAMS YOU'" 
+    alias tty-clock="tty-clock -c -C 7 -f '%a, %d %b'"
 
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
