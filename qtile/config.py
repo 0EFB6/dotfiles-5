@@ -1,8 +1,16 @@
 import os
 import subprocess
 from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match
-from libqtile.config import Screen, ScratchPad, DropDown
+from libqtile.config import (
+    Click,
+    Drag,
+    DropDown,
+    Group,
+    Key,
+    Match,
+    ScratchPad,
+    Screen,
+)
 from libqtile.command import lazy
 
 
@@ -125,11 +133,11 @@ keys = [
     Key([], "Print",
         lazy.spawn("flameshot screen -p /home/ervin/Pictures")),
     Key([], "XF86AudioRaiseVolume",
-        lazy.spawn("/home/ervin/.scripts/vol_ctl +5%")),
+        lazy.spawn("/home/ervin/.bin/vol_ctl +5%")),
     Key([], "XF86AudioMute",
-        lazy.spawn("/home/ervin/.scripts/vol_mute")),
+        lazy.spawn("/home/ervin/.bin/vol_mute")),
     Key([], "XF86AudioLowerVolume",
-        lazy.spawn("/home/ervin/.scripts/vol_ctl -5%")),
+        lazy.spawn("/home/ervin/.bin/vol_ctl -5%")),
     Key([], "XF86AudioPrev",
         lazy.spawn("playerctl -a previous")),
     Key([], "XF86AudioPlay",
@@ -137,9 +145,9 @@ keys = [
     Key([], "XF86AudioNext",
         lazy.spawn("playerctl -a next")),
     Key([], "XF86MonBrightnessUp",
-        lazy.spawn("/home/ervin/.scripts/brightness_ctl up")),
+        lazy.spawn("/home/ervin/.bin/brightness_ctl up")),
     Key([], "XF86MonBrightnessDown",
-        lazy.spawn("/home/ervin/.scripts/brightness_ctl down")),
+        lazy.spawn("/home/ervin/.bin/brightness_ctl down")),
     Key(["mod1"], "space",
         lazy.widget["keyboardlayout"].next_keyboard()),
 ]
@@ -319,7 +327,7 @@ def no_text(text):
 
 def reload():
     qtile.cmd_reload_config()
-    qtile.cmd_spawn('/home/ervin/.scripts/change_wallpaper.sh')
+    qtile.cmd_spawn('/home/ervin/.bin/change_wallpaper.sh')
 
 
 screens = [
@@ -410,7 +418,7 @@ screens = [
                     foreground=colors_nord[14],
                     font="Font Awesome 5 Free Solid",
                     func=lambda:
-                    subprocess.check_output("/home/ervin/.scripts/bat_icon").decode('utf-8')
+                    subprocess.check_output("/home/ervin/.bin/bat_icon").decode('utf-8')
                     ),
                 widget.GenPollText(
                     update_interval=1,
@@ -419,7 +427,7 @@ screens = [
                     fontsize=11,
                     func=lambda:
                     subprocess.check_output(
-                        "/home/ervin/.scripts/bat_charging_icon").decode('utf-8')
+                        "/home/ervin/.bin/bat_charging_icon").decode('utf-8')
                     ),
                 widget.TextBox(
                     text='/',
@@ -449,26 +457,11 @@ screens = [
                         widget.GenPollText(
                             update_interval=3600,
                             foreground=colors_nord[5],
-                            func=lambda: subprocess.check_output("/home/ervin/.scripts/chkup").decode("utf-8"),
+                            func=lambda: subprocess.check_output("/home/ervin/.bin/chkup").decode("utf-8"),
                             mouse_callbacks=
                             {'Button1':
                                 lambda: qtile.cmd_spawn("alacritty -e yay")}
                             ),
-                        # widget.TextBox(
-                        #     text='/',
-                        #     font='Font Awesome 5 Free Solid',
-                        #     foreground=colors_nord[3],
-                        #     background=colors_nord[0],
-                        #     padding=0,
-                        #     fontsize=39
-                        #     ),
-                        # widget.TextBox(
-                        #     text="",
-                        #     font="Font Awesome 5 Free Solid",
-                        #     mouse_callbacks=
-                        #     {'Button1': lambda: qtile.cmd_spawn("alacritty -e /home/ervin/.scripts/bw.sh")},
-                        #     foreground=colors_nord[11]
-                        #     ),
                         widget.TextBox(
                             text='/',
                             font='Font Awesome 5 Free Solid',
@@ -528,7 +521,7 @@ screens = [
                 widget.GenPollText(
                     update_interval=3600,
                     foreground=colors_nord[13],
-                    func=lambda: subprocess.check_output("/home/ervin/.scripts/uptime.sh").decode("utf-8")
+                    func=lambda: subprocess.check_output("/home/ervin/.bin/uptime.sh").decode("utf-8")
                     ),
                 widget.Spacer(
                     length=5),
@@ -561,13 +554,13 @@ mouse = [
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.scripts/autostart.sh')
+    home = os.path.expanduser('~/.bin/autostart.sh')
     subprocess.call([home])
 
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = True
-floating_layout =layout.Floating(
+floating_layout = layout.Floating(
     float_rules=[
         *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),  # gitk
@@ -576,7 +569,8 @@ floating_layout =layout.Floating(
         Match(wm_class='ssh-askpass'),  # ssh-askpass
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
-    ])
+    ],
+    border_focus="#bcadf9")
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

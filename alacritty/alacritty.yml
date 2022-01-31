@@ -27,8 +27,6 @@ colors:
     cyan:    '0x56b6c2'
     white:   '0xffffff'
 
-background_opacity: 0.9
-
 cursor:
   blinking: Never
 
@@ -81,7 +79,7 @@ window:
   semantic_escape_chars: ',│`|:"'' ()[]{}<>'
   save_to_clipboard: true
   live_config_reload: true
-  opacity: 0.3
+  opacity: 0.96
 
   startup_mode: Maximized
   decorations: None
@@ -92,6 +90,6 @@ key_bindings:
   - { key: Key0, mods: Control, action: ResetFontSize }
   - { key: Equals, mods: Control, action: IncreaseFontSize }
   - { key: Minus, mods: Control, action: DecreaseFontSize }
-  # - { key: Add, mods: Control, action: IncreaseFontSize }
-  # - { key: Subtract, mods: Control, action: DecreaseFontSize }
-  # - { key: N, mods: Control, action: SpawnNewInstance }
+  - { key: NumpadAdd, mods: Control, action: IncreaseFontSize }
+  - { key: NumpadSubtract, mods: Control, action: DecreaseFontSize }
+  - { key: N, mods: Control, action: SpawnNewInstance }
