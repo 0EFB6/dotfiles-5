@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# if pgrep -x anbox > /dev/null 
+# then 
+# 	export SPOTIFY_WINDOW_ID="$(wmctrl -l | grep " Spotify" | cut -d " " -f1)"
+# 	xdotool key --window $SPOTIFY_WINDOW_ID "XF86AudioPause"
+# else
+  playerctl play-pause
+# fi

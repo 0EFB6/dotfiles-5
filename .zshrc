@@ -233,7 +233,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
     alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
     alias sway="sway --my-next-gpu-wont-be-nvidia"
-    alias b="/home/ervin/.bin/"
+    alias b="/home/ervin/.local/bin/"
     alias c="/home/ervin/.config"
     alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080 && ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
     alias neo="neo -D"
@@ -277,7 +277,7 @@ function _pip_completion {
 compctl -K _pip_completion pip
 # pip zsh completion end
 
-export PATH=/home/ervin/www/src/cloned/gnirehtet:/home/ervin/.bin:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=/home/ervin/www/src/cloned/gnirehtet:/home/ervin/.local/bin:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
 
 #XDG Base Directory specification
 export XDG_STATE_HOME="$HOME"/.local/state
@@ -293,6 +293,7 @@ export WGETRC="$XDG_CONFIG_HOME"/wgetrc
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/pythonrc
 
 #VARIABLES
 export TERMINAL=alacritty

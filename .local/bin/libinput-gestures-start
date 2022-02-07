@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ "$XDG_SESSION_DESKTOP" = "qtile" ]]
+then
+  ln -s "$HOME"/.config/libinput-gestures-qtile.conf "$HOME"/.config/libinput-gestures.conf
+  libinput-gestures-setup restart
+else 
+  ln -s "$HOME"/.config/libinput-gestures-budgie.conf "$HOME"/.config/libinput-gestures.conf
+  libinput-gestures-setup restart
+fi

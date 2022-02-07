@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if pgrep pasystray; then
+	pkill -9 pasystray
+else pasystray &
+fi
+if pgrep flameshot; then
+	pkill -9 flameshot
+else flameshot &
+fi
+if pgrep nm-applet; then
+	pkill -9 nm-applet
+else nm-applet &
+fi
+if pgrep blueman-applet; then
+	pkill -9 blueman-applet
+else blueman-applet &
+fi

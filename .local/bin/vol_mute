@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "$(amixer sget Master | grep -G "\[" | tr -s ' ' | cut -d' ' -f7 | tr -d '\[\]' | head -1)" == "on" ]]
+then
+	amixer sset Master mute
+else
+	amixer sset Master unmute
+fi

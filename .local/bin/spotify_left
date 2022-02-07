@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if pgrep -x anbox > /dev/null
+then
+	SPOTIFY_WINDOW_ID="$(wmctrl -l | grep " Spotify" | cut -d " " -f1)"
+	export SPOTIFY_WINDOW_ID
+	xdotool key --window "$SPOTIFY_WINDOW_ID" "XF86AudioPrev"
+else
+  playerctl previous
+fi

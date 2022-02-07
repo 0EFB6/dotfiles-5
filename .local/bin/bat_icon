@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+
+battery_empty=""
+battery_full=""
+battery_half=""
+battery_quarter=""
+battery_three_quarters=""
+battery_now="$(upower -i "$(upower -e | grep 'BAT')" | grep -E "percentage" | tr -s " " |cut -d" " -f3 | tr -d "%")"
+
+if [[ "$battery_now" -eq 0 ]]
+then
+	printf "%s" "$battery_empty"
+fi
+if [[ "$battery_now" -le 25 ]] && [[ "$battery_now" -gt 0 ]]
+then
+	printf "%s" "$battery_quarter"
+fi
+if [[ "$battery_now" -le 50 ]] && [[ "$battery_now" -gt 25 ]]
+then
+	printf "%s" "$battery_half"
+fi
+if [[ "$battery_now" -le 75 ]] && [[ "$battery_now" -gt 50 ]]
+then
+	printf "%s" "$battery_three_quarters"
+fi
+if [[ "$battery_now" -le 100 ]] && [[ "$battery_now" -gt 75 ]]
+then
+	printf "%s" "$battery_full"
+fi

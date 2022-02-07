@@ -128,16 +128,20 @@ keys = [
         lazy.group['scratchpad'].dropdown_toggle('term')),
     Key([mod], "y",
         lazy.spawn("google-chrome-stable --app=https://www.youtube.com")),
+    Key([mod], "s",
+        lazy.spawn("gnome-control-center")),
+    Key([mod], "k",
+        lazy.spawn("/home/ervin/.local/bin/qtile_key_pdf")),
 
     # DE keys
     Key([], "Print",
         lazy.spawn("flameshot screen -p /home/ervin/Pictures")),
     Key([], "XF86AudioRaiseVolume",
-        lazy.spawn("/home/ervin/.bin/vol_ctl +5%")),
+        lazy.spawn("/home/ervin/.local/bin/vol_ctl +5%")),
     Key([], "XF86AudioMute",
-        lazy.spawn("/home/ervin/.bin/vol_mute")),
+        lazy.spawn("/home/ervin/.local/bin/vol_mute")),
     Key([], "XF86AudioLowerVolume",
-        lazy.spawn("/home/ervin/.bin/vol_ctl -5%")),
+        lazy.spawn("/home/ervin/.local/bin/vol_ctl -5%")),
     Key([], "XF86AudioPrev",
         lazy.spawn("playerctl -a previous")),
     Key([], "XF86AudioPlay",
@@ -145,9 +149,9 @@ keys = [
     Key([], "XF86AudioNext",
         lazy.spawn("playerctl -a next")),
     Key([], "XF86MonBrightnessUp",
-        lazy.spawn("/home/ervin/.bin/brightness_ctl up")),
+        lazy.spawn("/home/ervin/.local/bin/brightness_ctl up")),
     Key([], "XF86MonBrightnessDown",
-        lazy.spawn("/home/ervin/.bin/brightness_ctl down")),
+        lazy.spawn("/home/ervin/.local/bin/brightness_ctl down")),
     Key(["mod1"], "space",
         lazy.widget["keyboardlayout"].next_keyboard()),
 ]
@@ -231,13 +235,14 @@ def assign_app_group(client):
         ]
     d[group_names[2]] = [
         "Firefox",
-        "Chromium",
         "firefox",
+        "Navigator",
+        "Chromium",
         "chromium",
         "google-chrome",
-        "qbittorrent",
         "Google-chrome",
         "docs.google.com__spreadsheets_d_1n-rQuzX04B-40f-xlXRoTUjcCqWrpj2qKNtjCUHER7c_edit"
+        "qbittorrent",
         ]
     d[group_names[3]] = [
         "ferdi",
@@ -247,7 +252,8 @@ def assign_app_group(client):
         "blueman-manager",
         "nitrogen",
         "pling-store",
-        "Xfce4-power-manager-settings"
+        "Xfce4-power-manager-settings",
+        "pavucontrol"
         ]
 
     wm_class = client.window.get_wm_class()[0]
@@ -327,7 +333,7 @@ def no_text(text):
 
 def reload():
     qtile.cmd_reload_config()
-    qtile.cmd_spawn('/home/ervin/.bin/change_wallpaper.sh')
+    qtile.cmd_spawn('/home/ervin/.local/bin/change_wallpaper.sh')
 
 
 screens = [
@@ -398,7 +404,9 @@ screens = [
                     foreground=colors_nord[15]
                     ),
                 widget.Volume(
-                    foreground=colors_nord[15]
+                    foreground=colors_nord[15],
+                     mouse_callbacks=
+                    {'Button3': lambda: qtile.cmd_spawn("qpaeq")}
                     ),
                 widget.TextBox(
                     text='/',
@@ -418,7 +426,7 @@ screens = [
                     foreground=colors_nord[14],
                     font="Font Awesome 5 Free Solid",
                     func=lambda:
-                    subprocess.check_output("/home/ervin/.bin/bat_icon").decode('utf-8')
+                    subprocess.check_output("/home/ervin/.local/bin/bat_icon").decode('utf-8')
                     ),
                 widget.GenPollText(
                     update_interval=1,
@@ -427,7 +435,7 @@ screens = [
                     fontsize=11,
                     func=lambda:
                     subprocess.check_output(
-                        "/home/ervin/.bin/bat_charging_icon").decode('utf-8')
+                        "/home/ervin/.local/bin/bat_charging_icon").decode('utf-8')
                     ),
                 widget.TextBox(
                     text='/',
@@ -457,7 +465,7 @@ screens = [
                         widget.GenPollText(
                             update_interval=3600,
                             foreground=colors_nord[5],
-                            func=lambda: subprocess.check_output("/home/ervin/.bin/chkup").decode("utf-8"),
+                            func=lambda: subprocess.check_output("/home/ervin/.local/bin/chkup").decode("utf-8"),
                             mouse_callbacks=
                             {'Button1':
                                 lambda: qtile.cmd_spawn("alacritty -e yay")}
@@ -521,7 +529,7 @@ screens = [
                 widget.GenPollText(
                     update_interval=3600,
                     foreground=colors_nord[13],
-                    func=lambda: subprocess.check_output("/home/ervin/.bin/uptime.sh").decode("utf-8")
+                    func=lambda: subprocess.check_output("/home/ervin/.local/bin/uptime.sh").decode("utf-8")
                     ),
                 widget.Spacer(
                     length=5),
@@ -542,6 +550,146 @@ screens = [
     ),
 ]
 
+displays = subprocess.check_output('xrandr').decode('utf-8')
+display_status = displays.find('disconnected')
+
+if display_status == -1:
+    lazy.spawn("xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1")
+    screens.append(Screen(
+        top=bar.Bar(
+            [
+                widget.Image(
+                    filename="/usr/share/pixmaps/archlinux-logo.svg",
+                    margin=5,
+                    mouse_callbacks=
+                    {'Button1': lambda: qtile.cmd_spawn("rofi -show drun -terminal alacritty -show-icons")}
+                    ),
+                widget.Image(
+                    filename="/usr/share/icons/Papirus/64x64/apps/python.svg",
+                    margin=5,
+                    mouse_callbacks=
+                    {'Button1': lambda: qtile.cmd_spawn("subl /home/ervin/.config/qtile/config.py")}
+                    ),
+                widget.Spacer(
+                    length=3),
+                widget.CurrentLayoutIcon(
+                    scale=0.6
+                    ),
+                widget.Spacer(
+                    length=3),
+                widget.GroupBox(
+                    font='Font Awesome 5 Free Solid',
+                    fontsize=12,
+                    highlight_method='block',
+                    block_highlight_text_color=colors_nord[4],
+                    inactive=colors_nord[3],
+                    active=colors_nord[4],
+                    padding_y=7,
+                    rounded="true"
+                    ),
+                widget.TaskList(
+                    parse_text=no_text,
+                    highlight_method='block',
+                    icon_size=19,
+                    border=colors_nord[3],
+                    margin_y=1,
+                    rounded=False,
+                    ),
+                widget.WidgetBox(
+                    widgets=[
+                        widget.Clock(
+                            format='%A, %B %d - ',
+                            padding=0,
+                            foreground=colors_nord[6],
+                            ),
+                    ],
+                    foreground=colors_nord[6],
+                    text_closed="\uf017 ",
+                    text_open="\uf017 ",
+                    font='Font Awesome 5 Free Solid',
+                    ),
+                widget.Clock(
+                    format='%H:%M',
+                    padding=0,
+                    foreground=colors_nord[6],
+                    ),
+                widget.Spacer(
+                    length=bar.STRETCH
+                    ),
+                widget.TextBox(
+                    font='Font Awesome 5 Free Solid',
+                    text="",
+                    foreground=colors_nord[15]
+                    ),
+                widget.Volume(
+                    foreground=colors_nord[15],
+                    mouse_callbacks=
+                    {'Button3': lambda: qtile.cmd_spawn("qpaeq")}
+                    ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                widget.Battery(
+                    format="{percent:2.0%}",
+                    update_interval=5,
+                    foreground=colors_nord[14]
+                    ),
+                widget.GenPollText(
+                    update_interval=1,
+                    foreground=colors_nord[14],
+                    font="Font Awesome 5 Free Solid",
+                    func=lambda:
+                    subprocess.check_output("/home/ervin/.local/bin/bat_icon").decode('utf-8')
+                    ),
+                widget.GenPollText(
+                    update_interval=1,
+                    foreground=colors_nord[14],
+                    font="Font Awesome 5 Free Solid",
+                    fontsize=11,
+                    func=lambda:
+                    subprocess.check_output(
+                        "/home/ervin/.local/bin/bat_charging_icon").decode('utf-8')
+                    ),
+                widget.TextBox(
+                    text='/',
+                    font='Font Awesome 5 Free Solid',
+                    foreground=colors_nord[3],
+                    background=colors_nord[0],
+                    padding=0,
+                    fontsize=39
+                    ),
+                widget.Spacer(
+                    length=5),
+                widget.GenPollText(
+                    update_interval=3600,
+                    foreground=colors_nord[13],
+                    func=lambda: subprocess.check_output("/home/ervin/.local/bin/uptime.sh").decode("utf-8")
+                    ),
+                widget.Spacer(
+                    length=5),
+                widget.TextBox(
+                    text="",
+                    font="Font Awesome 5 Free Solid",
+                    mouse_callbacks=
+                    {'Button1': lambda: qtile.cmd_spawn('nwgbar')},
+                    foreground=colors_nord[11]
+                    ),
+                widget.Spacer(
+                    length=5),
+            ],
+            26,
+            margin=3,
+            background=colors_nord[0]
+            ),
+        ),
+    )
+
+
 # Drag floating layouts.
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
@@ -554,7 +702,7 @@ mouse = [
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.bin/autostart.sh')
+    home = os.path.expanduser('~/.local/bin/autostart.sh')
     subprocess.call([home])
 
 follow_mouse_focus = True
