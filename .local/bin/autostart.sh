@@ -14,6 +14,6 @@ nm-applet & disown
 flameshot &
 xset s 600 &
 xss-lock -- betterlockscreen -l dimblur &
-/home/ervin/.config/conky/lean-conky-config/start_qtile.sh -n &
+# /home/ervin/.config/conky/lean-conky-config/start_qtile.sh -n &
 picom -f --blur-method dual_kawase --blur-strength 1 --corner-radius 5 &
 albert &

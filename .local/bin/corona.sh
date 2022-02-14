@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-#!/bin/sh
-=======
 #!/bin/bash
->>>>>>> 62b26a8 (commit)
 
 /usr/bin/corona RO > /mnt/data/corona_tables/corona-today
 
@@ -17,12 +13,10 @@ active=$(grep Romania /mnt/data/corona_tables/corona-today | tr -s ' ' | cut -d 
 critical=$(grep Romania /mnt/data/corona_tables/corona-today | tr -s ' ' | cut -d ' ' -f 18)
 per_million=$(grep Romania /mnt/data/corona_tables/corona-today | tr -s ' ' | cut -d ' ' -f 20)
 
-<<<<<<< HEAD
 tee -a /mnt/data/corona_tables/corona <<< "$(date -I) $(date +%H:%M)  | $total_cases  | $cases_today   | $total_deaths  | $deaths_today  | $recovered  | $active  | $critical  | $per_million  |"
 
 tee -a /mnt/data/corona_tables/corona_unformatted <<< "$(date -I) $(date +%H:%M)   $total_cases  $cases_today   $total_deaths  $deaths_today  $recovered  $active  $critical  $per_million"
-=======
+
 tee -a /mnt/data/corona_tables/corona <<< "$(date -I) $(date +%H:%M) | $total_cases | $cases_today | $total_deaths | $deaths_today | $recovered | $active | $critical | $per_million |"
 
 tee -a /mnt/data/corona_tables/corona_unformatted <<< "$(date -I) $(date +%H:%M) $total_cases $cases_today $total_deaths $deaths_today $recovered $active $critical $per_million"
->>>>>>> 62b26a8 (commit)

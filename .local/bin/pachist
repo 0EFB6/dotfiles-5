@@ -1,0 +1,5 @@
+#!/bin/sh
+
+history="$(cat /var/log/pacman.log | grep -i "installed\|removed\|upgraded" | awk '{$1="";$2=""}1' | sed 's/  //' | tail -100)"
+
+echo "$history"

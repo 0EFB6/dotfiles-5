@@ -5,12 +5,9 @@ import shutil
 
 
 shittyfiles = [
-<<<<<<< HEAD
-=======
     '~/.xsession-errors',
     '~/.vim',
     '~/.xsession-errors.old',
->>>>>>> 62b26a8 (commit)
     '~/.gphoto',
     '~/.john',
     '~/.yarn',
@@ -21,8 +18,6 @@ shittyfiles = [
     '~/.dat.ngspice',
     '~/.viminfo',
     '~/.cortex',
-    '~/eclipse-workspace',
-    '~/.eclipse',
     '~/.lesshst',
     '~/.fehbg',
     '~/.python_history',
@@ -32,9 +27,7 @@ shittyfiles = [
     '~/Documents/Templates/',
     '~/Documents/Music/',
     '~/.octave_hist',
-    '~/.p2',
     '~/SoftMaker',
-    '~/.swt',
     '~/.wget-hsts',
     '~/.zsh_history',
     '~/.adobe',
