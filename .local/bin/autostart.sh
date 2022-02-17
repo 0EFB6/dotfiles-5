@@ -4,10 +4,6 @@ gnome-keyring-daemon --start
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 pkill -KILL wallpaper.sh
 pkill -KILL sleep
-/home/ervin/.bin/wallpaper.sh &
-blueman-applet &
-nm-applet & disown
-flameshot &
 /home/ervin/.local/bin/wallpaper.sh &
 blueman-applet &
 nm-applet & disown

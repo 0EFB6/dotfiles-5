@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pkill -KILL wallpaper.sh
+pkill -KILL wallpaper
 pkill -KILL sleep
-/home/ervin/.local/bin/wallpaper.sh &
+/home/ervin/.local/bin/wallpaper &
 
 
