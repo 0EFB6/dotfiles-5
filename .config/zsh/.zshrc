@@ -44,6 +44,18 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+ 
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
 
 # History configurations
 HISTFILE=~/.local/state/zsh/history
@@ -253,64 +265,24 @@ if [ -x /usr/bin/dircolors ]; then
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 fi
 
-# enable auto-suggestions based on the history
-if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    . /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    # change suggestion color
-    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=magenta,bold'
-fi
-
 # enable command-not-found if installed
 if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
-export PATH=/home/ervin/www/src/cloned/gnirehtet:/home/ervin/.local/bin:/home/ervin/.local/bin:/home/ervin/.local/share/gem/ruby/3.0.0/bin:$PATH
-
-#XDG Base Directory specification
-export XDG_STATE_HOME="$HOME"/.local/state
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_DATA_HOME=/home/ervin/.local/share
-export XDG_CACHE_HOME=/home/ervin/.cache
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export OCTAVE_HISTFILE="$XDG_CACHE_HOME"/octave-hsts
-export OCTAVE_SITE_INITFILE="$XDG_CONFIG_HOME"/octave/octaverc
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export WGETRC="$XDG_CONFIG_HOME"/wgetrc
-export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
-export PYTHONSTARTUP="$XDG_CONFIG_HOME"/pythonrc
-
-#VARIABLES
-export TERMINAL=alacritty
-export EDITOR=lvim
-
 #sourcing
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source /home/ervin/www/src/cloned/zsh-abbr/zsh-abbr.zsh
 
+fet.sh
+
 #checking for tty or not
-if [[ "$(tty | sed -e 's:/dev/::' | sed -e 's/[0-9]//')" == "tty" ]]
+if [[ "$(tty | sed -e 's:/dev/::;s/[0-9]//')" == "tty" ]]
 then
 	alias ls="exa -H"
 	alias nvim="nvim"
 	alias vim="nvim"
   echo -en "\e[?25h"
 else
-	fet.sh
 	xhost si:localuser:root > /dev/null
 fi

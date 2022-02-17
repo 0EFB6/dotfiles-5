@@ -217,6 +217,7 @@ obs-studio
 octave
 openvpn
 otf2bdf
+pacgraph
 pacman
 pacman-contrib
 pacutils
