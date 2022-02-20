@@ -1,0 +1,5 @@
+#!/bin/bash
+
+git -C /home/ervin/www/src/mine/dotfiles add .
+git -C /home/ervin/www/src/mine/dotfiles commit -m 'commit'
+git -C /home/ervin/www/src/mine/dotfiles push
