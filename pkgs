@@ -44,7 +44,6 @@ conky
 cronie
 cups
 dconf-editor
-deluge
 dkms
 dmenu
 dnsmasq
@@ -102,6 +101,7 @@ gnome-themes-extra
 gnome-tweaks
 gnome-user-share
 gnuplot
+go
 google-chrome-beta
 gparted
 grep
@@ -118,6 +118,7 @@ gvfs-nfs
 gvfs-smb
 gzip
 hexedit
+hollywood
 htop
 hw-probe-git
 hypr-git
@@ -196,7 +197,6 @@ mysql-clients
 mysql-connector-java
 mysql-workbench
 ncdu
-ncmatrix
 nemo
 neofetch
 neovim
@@ -241,6 +241,7 @@ plymouth
 polkit-gnome
 polybar
 popcorntime-bin
+preload
 pulseaudio-equalizer
 python-dbus-next
 python-iwlib
@@ -294,7 +295,6 @@ tlp
 tmux
 toilet
 tracker
-transmission-qt
 tree
 ttf-font-awesome
 ttf-hanazono
