@@ -30,6 +30,7 @@
 * cp .config/* /home/ervin/.config && mkdir /home/ervin/.local/bin && cp -al .local/bin/* /home/ervin/.local/bin/
 * cp Code* /usr/share/fonts/OTF/
 * edit /etc/lightdm/lightdm.conf (greeter-session)
+ 
 ## Useful
 
 * lscpu | grep MHz
