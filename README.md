@@ -16,13 +16,17 @@
 
 ## Post-Install
 
+* echo "arch" > /etc/hostname
+* echo -e "127.0.0.1 localhost\n::1 localhost" > /etc/hosts
 * useradd -m -g wheel ervin 
 * passwd ervin 
 * visudo
 * cd /home/ervin
 * git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm 
-* yay -S cpupower xf86-video-intel nvim zsh linux-zen linux-zen-headers xorg-server xorg-xinit lightdm lightdm-slick-greeter qtile exa
 * git clone https://github.com/ervinpopescu/dotfiles && cd dotfiles
+* reflector @/home/ervin/dotfiles/reflector.conf 
+* yay -S cpupower xf86-video-intel nvim zsh linux-zen linux-zen-headers xorg-server xorg-xinit lightdm lightdm-slick-greeter qtile exa reflector-nomirrorlist 
+* edit /etc/pacman.conf (testing,core,extra,community-testing,community || Color,CheckSpace,VerbosePkgLists,ParallelDownloads = 5,ILoveCandy)
 * cp .config/* /home/ervin/.config && mkdir /home/ervin/.local/bin && cp -al .local/bin/* /home/ervin/.local/bin/
 * edit /etc/lightdm/lightdm.conf (greeter-session)
 ## Useful
