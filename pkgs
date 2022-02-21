@@ -41,6 +41,7 @@ chntpw
 chrome-gnome-shell
 cmake
 conky
+cpupower
 cronie
 cups
 dconf-editor
@@ -215,6 +216,7 @@ ntp
 nwg-launchers
 obs-studio
 octave
+onefetch
 openvpn
 otf2bdf
 pacgraph
@@ -322,6 +324,7 @@ xclip
 xcolor
 xdg-user-dirs-gtk
 xdotool
+xf86-video-intel
 xfsudo
 xinit-xsession
 xob
