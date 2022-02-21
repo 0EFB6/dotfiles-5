@@ -26,7 +26,9 @@
 * `git clone https://github.com/ervinpopescu/dotfiles && cd dotfiles`
 * `reflector @/home/ervin/dotfiles/reflector.conf` 
 * `yay -S alacritty betterlockscreen cpupower exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen nvim papirus-icon-theme pulseaudio qtile reflector-nomirrorlist rofi sh-git ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting` 
-* edit /etc/pacman.conf (testing,core,extra,community-testing,community || Color,CheckSpace,VerbosePkgLists,ParallelDownloads = 5,ILoveCandy)
+* edit /etc/pacman.conf (
+`testing,core,extra,community-testing,community`
+`Color,CheckSpace,VerbosePkgLists,ParallelDownloads = 5,ILoveCandy`)
 * `cp .config/* /home/ervin/.config && mkdir /home/ervin/.local/bin && cp -al .local/bin/* /home/ervin/.local/bin/`
 * `cp Code* /usr/share/fonts/OTF/`
 * `fc-cache -f -v` 
