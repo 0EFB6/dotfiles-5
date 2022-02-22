@@ -10,9 +10,9 @@ from keys import keys, mod, terminal
 
 groups = []
 
-group_names = 'coding media www social settings etc'.split()
-group_labels = ["", "", "", "", "", ""]
-group_layouts = ["bsp", "monadtall", "max", "zoomy", "bsp", "bsp"]
+group_names = 'coding www social settings etc media'.split()
+group_labels = ["", "", "", "", "", ""]
+group_layouts = ["bsp", "max", "zoomy", "bsp", "bsp", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -63,7 +63,32 @@ def assign_app_group(client):
         "evince",
         ]
     d[group_names[1]] = [
+        "Firefox",
+        "firefox",
+        "Navigator",
+        "Chromium",
+        "chromium",
+        "google-chrome-beta",
+        "Google-chrome-beta",
+        "qbittorrent",
+        ]
+    d[group_names[2]] = [
+        "ferdi",
+        ]
+    d[group_names[3]] = [
+        "gnome-control-center",
+        "blueman-manager",
+        "nitrogen",
+        "pling-store",
+        "Xfce4-power-manager-settings",
+        "pavucontrol",
+        "lxappearance"
+        ]
+    d[group_names[4]] = [
+        ]
+    d[group_names[5]] = [
         "www.youtube.com",
+        "www.youtube.com__watch"
         "Spotify",
         "Pragha",
         "Clementine",
@@ -85,28 +110,6 @@ def assign_app_group(client):
         "mpv",
         "obs",
         ]
-    d[group_names[2]] = [
-        "Firefox",
-        "firefox",
-        "Navigator",
-        "Chromium",
-        "chromium",
-        "google-chrome-beta",
-        "Google-chrome-beta",
-        "qbittorrent",
-        ]
-    d[group_names[3]] = [
-        "ferdi",
-        ]
-    d[group_names[4]] = [
-        "gnome-control-center",
-        "blueman-manager",
-        "nitrogen",
-        "pling-store",
-        "Xfce4-power-manager-settings",
-        "pavucontrol"
-        ]
-
     wm_class = client.window.get_wm_class()[0]
 
     for i in range(len(d)):

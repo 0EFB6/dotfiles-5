@@ -1,0 +1,6 @@
+adb shell input keyevent 26 - POWER
+adb shell input keyevent 24 - VOL UP
+adb shell input keyevent 25 - VOL DOWN
+adb shell input keyevent 85 - PLAY/PAUSE
+adb shell input keyevent 87 - NEXT
+adb shell input keyevent 88 - PREVIOUS

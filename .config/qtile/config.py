@@ -7,7 +7,7 @@ assert layouts
 
 widget_defaults = dict(
     font='CodeNewRoman Nerd Font Mono Bold',
-    fontsize=18,
+    fontsize=15,
     padding=2,
 )
 extension_defaults = widget_defaults.copy()
@@ -15,16 +15,14 @@ extension_defaults = widget_defaults.copy()
 from screens import screens
 assert screens
 
-
 import os
 import subprocess
 from libqtile import hook
 
-
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~/.local/bin/autostart')
-    subprocess.call([home])
+    autostart = os.path.expanduser('~/.local/bin/autostart')
+    subprocess.call([autostart])
 
 follow_mouse_focus = True
 bring_front_click = False

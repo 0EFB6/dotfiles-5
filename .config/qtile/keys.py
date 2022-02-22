@@ -3,6 +3,7 @@ from libqtile.config import Key
 from libqtile.command import lazy
 
 mod = "mod4"
+alt = "mod1"
 terminal = "alacritty"
 
 
@@ -49,11 +50,12 @@ keys = [
     # Different stuff to control windows and groups
     Key([mod],         "Up",        lazy.group.prev_window()),
     Key([mod],         "Down",      lazy.group.next_window()),
+    Key([mod],         "d",         lazy.function(toggle_minimize_all)),
+    Key([alt],         "Tab",       lazy.screen.toggle_group()),
     Key([mod],         "Left",      lazy.function(focus_previous_group)),
     Key([mod],         "Right",     lazy.function(focus_next_group)),
-    Key([mod],         "d",         lazy.function(toggle_minimize_all)),
-    Key([mod, "mod1"], "Left",      lazy.function(window_to_prev_group)),
-    Key([mod, "mod1"], "Right",     lazy.function(window_to_next_group)),
+    Key([mod, alt],    "Left",      lazy.function(window_to_prev_group)),
+    Key([mod, alt],    "Right",     lazy.function(window_to_next_group)),
 
     Key([mod, "control"], "Right",
         lazy.layout.grow_right(),
@@ -120,6 +122,8 @@ keys = [
         lazy.spawn("gnome-control-center")),
     Key([mod], "k",
         lazy.spawn("/home/ervin/.local/bin/qtile_key_pdf")),
+    Key([mod], "l",
+        lazy.spawn("betterlockscreen -l dimblur")),
 
     # DE keys
     Key([], "Print",
@@ -131,15 +135,15 @@ keys = [
     Key([], "XF86AudioLowerVolume",
         lazy.spawn("/home/ervin/.local/bin/vol_ctl -5%")),
     Key([], "XF86AudioPrev",
-        lazy.spawn("playerctl -a previous")),
+        lazy.spawn("/home/ervin/.local/bin/media_ctl previous")),
     Key([], "XF86AudioPlay",
-        lazy.spawn("playerctl -a play-pause")),
+        lazy.spawn("/home/ervin/.local/bin/media_ctl play-pause")),
     Key([], "XF86AudioNext",
-        lazy.spawn("playerctl -a next")),
+        lazy.spawn("/home/ervin/.local/bin/media_ctl next")),
     Key([], "XF86MonBrightnessUp",
         lazy.spawn("/home/ervin/.local/bin/brightness_ctl up")),
     Key([], "XF86MonBrightnessDown",
         lazy.spawn("/home/ervin/.local/bin/brightness_ctl down")),
-    Key(["mod1"], "space",
+    Key([alt], "space",
         lazy.widget["keyboardlayout"].next_keyboard()),
 ]
