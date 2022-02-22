@@ -10,7 +10,7 @@ else
     pause_flag="--pause=5"
     echo "Conky waiting 5 seconds to start..."
 fi
-if conky --daemonize --quiet "$pause_flag" --config=./conky.conf ; then
+if conky --daemonize --quiet "$pause_flag" --config=./conky_budgie.conf ; then
     echo "Started"
 else
     echo "Failed"

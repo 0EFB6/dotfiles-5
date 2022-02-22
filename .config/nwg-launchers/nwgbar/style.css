@@ -20,7 +20,7 @@ button:hover {
 }
 
 button:focus {
-    box-shadow: 0 0 4px;
+    box-shadow: 0 0 1px;
 }
 
 grid {

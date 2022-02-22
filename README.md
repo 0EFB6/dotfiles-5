@@ -2,7 +2,7 @@
 
 ## Install
 
-* ```ping archlinux.org```
+* `ping archlinux.org`
 * `timedatectl set-ntp true`
 * create partition with fdisk : 500M for boot 20G for root the rest for home (change type to 1 for boot to UEFI)
 * `mkfs.fat -F32` for boot and `mkfs.ext4` for root and home
@@ -25,7 +25,8 @@
 * `git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm`
 * `git clone https://github.com/ervinpopescu/dotfiles && cd dotfiles`
 * `reflector @/home/ervin/dotfiles/reflector.conf` 
-* `yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen neovim papirus-icon-theme pulseaudio qtile reflector-nomirrorlist rofi ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting` 
+* ```
+yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen neovim papirus-icon-theme pulseaudio qtile reflector-nomirrorlist rofi ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting``` 
 * edit /etc/pacman.conf (
 `testing,core,extra,community-testing,community`
 `Color,CheckSpace,VerbosePkgLists,ParallelDownloads = 5,ILoveCandy`)

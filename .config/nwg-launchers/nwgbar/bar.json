@@ -2,21 +2,21 @@
   {
     "name": "Lock screen",
     "exec": "betterlockscreen -l dimblur",
-    "icon": "/home/ervin/.local/share/icons/WhiteSur-dark/actions/32/system-lock-screen.svg"
+    "icon": "/usr/share/icons/WhiteSur-dark/actions/32/system-lock-screen.svg"
   },
   {
     "name": "Logout",
     "exec": "loginctl terminate-session self",
-    "icon": "/home/ervin/.local/share/icons/WhiteSur-dark/actions/32/system-log-out.svg"
+    "icon": "/usr/share/icons/WhiteSur-dark/actions/32/system-log-out.svg"
   },
   {
     "name": "Reboot",
     "exec": "systemctl reboot",
-    "icon": "/home/ervin/.local/share/icons/WhiteSur-dark/actions/32/system-reboot.svg"
+    "icon": "/usr/share/icons/WhiteSur-dark/actions/32/system-reboot.svg"
   },
   {
     "name": "Shutdown",
     "exec": "systemctl -i poweroff",
-    "icon": "/home/ervin/.local/share/icons/WhiteSur-dark/actions/32/system-shutdown.svg"
+    "icon": "/usr/share/icons/WhiteSur-dark/actions/32/system-shutdown.svg"
   }
 ]

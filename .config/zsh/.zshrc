@@ -219,39 +219,9 @@ precmd() {
     fi
 }
 
-# enable color support of ls, less and man, and also add handy aliases
+# enable color support of ls, less and man
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.config/dircolors && eval "$(dircolors -b ~/.config/dircolors)" || eval "$(dircolors -b)"
-    alias vim="lvim"
-    alias nvim="lvim"
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-    alias diff='diff --color=auto'
-    alias ip='ip --color=auto'
-    alias rm="rm -rf"
-    alias ls='exa --icons -H'
-    alias l='ls -a'
-    alias la='ls -a'
-    alias ll="ls -aghl"
-    alias nf="neofetch"
-    alias SS="sudo systemctl"
-    alias cat="bat"
-    alias q="gnome-session-quit"
-    alias df="df -h -x tmpfs -x devtmpfs -x squashfs"
-    alias p="sudo pacman"
-    alias gp="git add .; git commit -m 'commit'; git push"
-    alias o="xdg-open"
-    alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
-    alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
-    alias sway="sway --my-next-gpu-wont-be-nvidia"
-    alias b="/home/ervin/.local/bin/"
-    alias c="/home/ervin/.config"
-    alias sa="adb forward tcp:8022 tcp:8022 && adb forward tcp:8080 tcp:8080 && ssh localhost -p 8022 -i ~/.ssh/id_rsa_android"
-    alias neo="neo -D"
-    alias neo-ru="neo --color=red --charset=cyrillic -m 'IN SOVIET RUSSIA, COMPUTER PROGRAMS YOU'" 
-    alias tty-clock="tty-clock -c -C 7 -f '%a, %d %b'"
-
     export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
     export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
     export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
@@ -276,13 +246,4 @@ source /home/ervin/www/src/cloned/zsh-abbr/zsh-abbr.zsh
 
 fet.sh
 
-#checking for tty or not
-if [[ "$(tty | sed -e 's:/dev/::;s/[0-9]//')" == "tty" ]]
-then
-	alias ls="exa -H"
-	alias nvim="nvim"
-	alias vim="nvim"
-  echo -en "\e[?25h"
-else
-	xhost si:localuser:root > /dev/null
-fi
+
