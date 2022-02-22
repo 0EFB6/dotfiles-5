@@ -1,7 +1,6 @@
 from libqtile import layout
 from libqtile.config import Click, Drag, Match
 from libqtile.command import lazy
-from libqtile.layout import floating
 from keys import mod
 
 layouts = [
@@ -38,20 +37,24 @@ layouts = [
         border_width=1,
         border_focus="#bcadf9",
         max_ratio=0.95
-    )
+        ),
+    # layout.Slice(
+    #     width=455,
+    #     match=Match(wm_class=["firefox"])
+    #     ),
 ]
 
 floating_layout = layout.Floating(
-        float_rules=[
-            *layout.Floating.default_float_rules,
-            Match(wm_class='confirmreset'),  # gitk
-            Match(wm_class='makebranch'),  # gitk
-            Match(wm_class='maketag'),  # gitk
-            Match(wm_class='ssh-askpass'),  # ssh-askpass
-            Match(title='branchdialog'),  # gitk
-            Match(title='pinentry'),  # GPG key password entry
-        ],
-        border_focus="#bcadf9")
+    float_rules=[
+        *layout.Floating.default_float_rules,
+        Match(wm_class='confirmreset'),  # gitk
+        Match(wm_class='makebranch'),  # gitk
+        Match(wm_class='maketag'),  # gitk
+        Match(wm_class='ssh-askpass'),  # ssh-askpass
+        Match(title='branchdialog'),  # gitk
+        Match(title='pinentry'),  # GPG key password entry
+    ],
+    border_focus="#bcadf9")
 
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),

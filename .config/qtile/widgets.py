@@ -44,13 +44,13 @@ common_widgets = [
         {'Button1': lambda: qtile.cmd_spawn(
             "subl /home/ervin/.config/qtile/config.py")}
         ),
-    widget.Spacer(
-        length=3),
-    widget.CurrentLayoutIcon(
-        scale=0.6
+    widget.TextBox(
+        text='/',
+        foreground=colors_nord[3],
+        background=colors_nord[0],
+        padding=0,
+        fontsize=35
         ),
-    widget.Spacer(
-        length=3),
     widget.GroupBox(
         font='Font Awesome 6 Free Solid',
         fontsize=12,
@@ -61,13 +61,33 @@ common_widgets = [
         padding_y=7,
         rounded="true"
         ),
+    widget.TextBox(
+        text='/',
+        foreground=colors_nord[3],
+        background=colors_nord[0],
+        padding=0,
+        fontsize=35
+        ),
+    # widget.CurrentLayoutIcon(
+    #     scale=0.6
+    #     ),
+    widget.CurrentLayout(),
+    widget.TextBox(
+        text='/',
+        foreground=colors_nord[3],
+        background=colors_nord[0],
+        padding=0,
+        fontsize=35
+        ),
     widget.TaskList(
         parse_text=no_text,
         highlight_method='block',
         icon_size=19,
         border=colors_nord[3],
+        margin_x=0,
         margin_y=1,
         rounded=False,
+        padding=1.5
         ),
     widget.WidgetBox(
         widgets=[

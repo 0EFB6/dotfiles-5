@@ -337,6 +337,7 @@ xob
 xorg-fonts-misc
 xorg-server-xephyr
 xorg-xbacklight
+xorg-xev
 xorg-xinit
 xorg-xrandr
 xorg-xsetroot

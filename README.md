@@ -39,6 +39,6 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
  
 ## Useful
 
-* lscpu | grep MHz
-* fc-list | grep -i awesome
-* fc-cache -f -v
+* `lscpu | grep MHz`
+* `fc-list | grep -i awesome`
+* `fc-cache -f -v`
