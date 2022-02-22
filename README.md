@@ -4,7 +4,7 @@
 
 * `ping archlinux.org`
 * `timedatectl set-ntp true`
-* create partition with fdisk : 500M for boot 20G for root the rest for home (change type to 1 for boot to UEFI)
+* create partition with `fdisk` : 500M for boot 20G for root the rest for home (change type to 1 for boot to UEFI)
 * `mkfs.fat -F32` for boot and `mkfs.ext4` for root and home
 * `mount` /mnt on root fs and /mnt/home (mkdir) on home fs
 * `cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup`
