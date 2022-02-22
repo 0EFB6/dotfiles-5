@@ -24,6 +24,7 @@ binutils
 bison
 bleachbit
 blueman
+bluez
 bluez-utils
 brightnessctl
 brother-mfc-7460dn
@@ -45,6 +46,7 @@ cpupower
 cronie
 cups
 dconf-editor
+dex
 dkms
 dmenu
 dnsmasq
@@ -67,6 +69,17 @@ firefox
 flameshot-git
 flex
 fortune-mod
+fortune-mod-archlinux
+fortune-mod-brooklyn-nine-nine
+fortune-mod-chuck
+fortune-mod-confucius
+fortune-mod-darkknight
+fortune-mod-matrix
+fortune-mod-protolol-git
+fortune-mod-sherlock
+fortune-mod-starwars
+fortune-mod-thebigbangtheory
+fortune-mod-vimtips
 freshfetch-bin
 fzf
 gawk
@@ -81,6 +94,7 @@ git
 git-filter-repo
 glava
 gnome-backgrounds
+gnome-bluetooth
 gnome-calculator
 gnome-clocks
 gnome-color-manager
@@ -155,18 +169,8 @@ libva-utils
 libva-vdpau-driver
 libvdpau-va-gl
 lightdm
-lightdm-gtk-greeter
-lightdm-gtk-greeter-settings
 lightdm-settings
 lightdm-slick-greeter
-lightdm-webkit2-theme-alter
-lightdm-webkit2-theme-arch
-lightdm-webkit2-theme-glorious
-lightdm-webkit2-theme-material2
-lightdm-webkit2-theme-obsidian
-lightdm-webkit2-theme-reactive
-lightdm-webkit2-theme-sapphire
-lightdm-webkit2-theme-tty-git
 linux
 linux-firmware
 linux-headers
@@ -245,6 +249,7 @@ polkit-gnome
 polybar
 popcorntime-bin
 preload
+pulseaudio-bluetooth
 pulseaudio-equalizer
 python-dbus-next
 python-iwlib
@@ -285,6 +290,7 @@ sudo
 sunwait
 svg2png
 sysstat
+systemd-boot-pacman-hook
 tcpdump
 teams
 telegram-desktop
