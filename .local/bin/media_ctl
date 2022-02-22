@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case "$1" in
+	"next")
+	[[ $(ps -p $(pgrep anbox) | grep session) == "" ]] && playerctl -a next || adb shell input keyevent 87;;
+	"previous")
+	[[ "$(ps -p $(pgrep anbox) | grep session)" == "" ]] && playerctl -a previous || adb shell input keyevent 88;;
+	"play-pause")
+	[[ "$(ps -p $(pgrep anbox) | grep session)" == "" ]] && playerctl -a play-pause || adb shell input keyevent 85;;
+esac

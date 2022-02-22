@@ -12,13 +12,13 @@ groups = []
 
 group_names = 'coding www social settings etc media'.split()
 group_labels = ["", "", "", "", "", ""]
-group_layouts = ["bsp", "max", "zoomy", "bsp", "bsp", "monadtall"]
+group_layouts = ["bsp", "max", "zoomy", "bsp", "bsp", "monadthreecol"]
 
 for i in range(len(group_names)):
     groups.append(
         Group(
             name=group_names[i],
-            layout=group_layouts[i].lower(),
+            layout=group_layouts[i],
             label=group_labels[i]
         ))
 
