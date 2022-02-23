@@ -96,8 +96,9 @@ keys = [
     Key([mod], "q",               lazy.window.kill()),
 
     # Qtile
-    Key([mod],  "r",              lazy.restart()),
     Key([mod],  "v",              lazy.validate_config()),
+    Key([mod],  "r",              lazy.reload_config()),
+    Key([mod, "shift"], "r",      lazy.restart()),
     Key([mod, "shift"], "q",      lazy.shutdown()),
     Key([mod, "shift"], "b",      lazy.hide_show_bar()),
 
