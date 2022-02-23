@@ -25,6 +25,7 @@ def no_text(text):
 
 
 def reload():
+    # qtile.cmd_reload_config()
     qtile.cmd_restart()
     qtile.cmd_spawn('/home/ervin/.local/bin/change_wallpaper')
 
