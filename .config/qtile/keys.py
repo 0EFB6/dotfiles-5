@@ -96,10 +96,10 @@ keys = [
     Key([mod], "q",               lazy.window.kill()),
 
     # Qtile
-    # Key([mod,  "shift"], "r",     lazy.restart()),
-    Key([mod,  "shift"], "q",     lazy.shutdown()),
     Key([mod],  "r",              lazy.restart()),
     Key([mod],  "v",              lazy.validate_config()),
+    Key([mod, "shift"], "q",      lazy.shutdown()),
+    Key([mod, "shift"], "b",      lazy.hide_show_bar()),
 
     # Apps
     Key([mod], "Return",
@@ -124,6 +124,8 @@ keys = [
         lazy.spawn("/home/ervin/.local/bin/qtile_key_pdf")),
     Key([mod], "l",
         lazy.spawn("betterlockscreen -l dimblur")),
+    Key([mod], "m",
+        lazy.spawn("/home/ervin/.local/bin/start-spotify")),
 
     # DE keys
     Key([], "Print",

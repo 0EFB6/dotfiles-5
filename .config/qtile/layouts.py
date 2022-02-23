@@ -30,12 +30,12 @@ layouts = [
         margin=5,
         border_width=1,
         border_focus="#bcadf9",
-        max_ratio=0.95
+        max_ratio=0.9
         ),
     layout.MonadThreeCol(
         margin=5,
-        border_width=1,
-        border_focus="#bcadf9",
+        border_width=0,
+        ratio=0.33,
         max_ratio=0.95
         ),
     # layout.Slice(
@@ -54,7 +54,7 @@ floating_layout = layout.Floating(
         Match(title='branchdialog'),  # gitk
         Match(title='pinentry'),  # GPG key password entry
     ],
-    border_focus="#bcadf9")
+    border_width=0)
 
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),

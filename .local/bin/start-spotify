@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ "$(qtile cmd-obj -o screen -f items -a group | sed "s/.*'\(.*\)'.*/\1/")" != "media" ]]; then
+	qtile cmd-obj -o screen -f toggle_group -a media
+	wait
+	dex "$HOME"/.local/share/applications/anbox/anbox-com-spotify-music.desktop &
+	wait
+	glava -r "mod bars-right" &
+	glava -r "mod bars-left" &
+else
+	dex "$HOME"/.local/share/applications/anbox/anbox-com-spotify-music.desktop &
+	wait
+	glava -r "mod bars-right" &
+	glava -r "mod bars-left" &
+fi
