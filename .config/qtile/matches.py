@@ -1,4 +1,4 @@
-from ..config import group_names
+from config import group_names
 
 d = {}
 d[group_names[0]] = [
@@ -54,8 +54,7 @@ d[group_names[3]] = [
     "pavucontrol",
     "lxappearance"
 ]
-d[group_names[4]] = [
-]
+d[group_names[4]] = []
 d[group_names[5]] = [
     "www.youtube.com",
     "www.youtube.com__watch"
