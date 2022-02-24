@@ -1,4 +1,4 @@
-from .groups import group_names
+from ..config import group_names
 
 d = {}
 d[group_names[0]] = [
@@ -31,7 +31,7 @@ d[group_names[0]] = [
     "Pcmanfm",
     "Pcmanfm-qt",
     "evince",
-    ]
+]
 d[group_names[1]] = [
     "Firefox",
     "firefox",
@@ -41,10 +41,10 @@ d[group_names[1]] = [
     "google-chrome-beta",
     "Google-chrome-beta",
     "qbittorrent",
-    ]
+]
 d[group_names[2]] = [
     "ferdi",
-    ]
+]
 d[group_names[3]] = [
     "gnome-control-center",
     "blueman-manager",
@@ -53,9 +53,9 @@ d[group_names[3]] = [
     "Xfce4-power-manager-settings",
     "pavucontrol",
     "lxappearance"
-    ]
+]
 d[group_names[4]] = [
-    ]
+]
 d[group_names[5]] = [
     "www.youtube.com",
     "www.youtube.com__watch"
@@ -79,4 +79,4 @@ d[group_names[5]] = [
     "Mpv",
     "mpv",
     "obs",
-    ]
+]

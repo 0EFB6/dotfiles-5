@@ -203,6 +203,7 @@ mysql-connector-java
 mysql-workbench
 ncdu
 nemo
+nemo-fileroller
 neofetch
 neovim
 nerd-fonts-complete
@@ -262,6 +263,7 @@ qbittorrent
 qemu
 qemu-arch-extra
 qt5-charts
+qtile-git
 quiterss
 r8168
 r8168-dkms
