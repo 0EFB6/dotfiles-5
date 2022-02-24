@@ -27,7 +27,7 @@
 * `reflector @/home/ervin/dotfiles/reflector.conf` 
 * 
 ```
-yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen neovim papirus-icon-theme pulseaudio qtile reflector-nomirrorlist rofi ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting
+yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen neovim papirus-icon-theme pulseaudio qtile-git reflector-nomirrorlist rofi ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting
 ``` 
 * edit /etc/pacman.conf (
 `testing,core,extra,community-testing,community`
