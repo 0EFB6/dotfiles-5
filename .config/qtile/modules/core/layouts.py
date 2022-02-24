@@ -1,7 +1,5 @@
 from libqtile import layout
-from libqtile.config import Click, Drag, Match
-from libqtile.command import lazy
-from keys import mod
+from libqtile.config import Match
 
 layouts = [
     layout.Bsp(
@@ -55,11 +53,3 @@ floating_layout = layout.Floating(
         Match(title='pinentry'),  # GPG key password entry
     ],
     border_width=0)
-
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
-]

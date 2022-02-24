@@ -1,10 +1,7 @@
-# from libqtile import qtile
 from libqtile.config import Key
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 
-mod = "mod4"
-alt = "mod1"
-terminal = "alacritty"
+from ..utils.settings import mod, alt, terminal
 
 
 def focus_previous_group(qtile):
@@ -43,7 +40,6 @@ def toggle_minimize_all(qtile):
         win.minimized = not win.minimized
         if win.minimized is False:
             group.layout_all()
-
 
 keys = [
 
