@@ -24,6 +24,7 @@
 * `cd /home/ervin`
 * `git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm`
 * `git clone https://github.com/ervinpopescu/dotfiles && cd dotfiles`
+* `cp etc/zsh/* /etc/zsh`
 * `reflector @/home/ervin/dotfiles/reflector.conf` 
 * 
 ```

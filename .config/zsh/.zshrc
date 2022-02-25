@@ -245,5 +245,3 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 source /home/ervin/www/src/cloned/zsh-abbr/zsh-abbr.zsh
 
 fet.sh
-
-
