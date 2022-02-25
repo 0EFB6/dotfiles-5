@@ -24,15 +24,16 @@
 * `cd /home/ervin`
 * `git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm`
 * `git clone https://github.com/ervinpopescu/dotfiles && cd dotfiles`
-* `cp etc/zsh/* /etc/zsh`
 * `reflector @/home/ervin/dotfiles/reflector.conf` 
 * 
 ```
 yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrome-beta htop lightdm lightdm-slick-greeter linux-zen linux-zen-headers lxappearance-gtk3 network-manager-applet networkmanager nitrogen neovim papirus-icon-theme pulseaudio qtile-git reflector-nomirrorlist rofi ttf-font-awesome xf86-video-intel xorg zsh zsh-completions zsh-fast-syntax-highlighting
 ``` 
 * edit /etc/pacman.conf (
+
 `testing,core,extra,community-testing,community`
 `Color,CheckSpace,VerbosePkgLists,ParallelDownloads = 5,ILoveCandy`)
+* `cp etc/zsh/* /etc/zsh`
 * `cp .config/* /home/ervin/.config && mkdir /home/ervin/.local/bin && cp -al .local/bin/* /home/ervin/.local/bin/`
 * `cp Code* /usr/share/fonts/OTF/`
 * `fc-cache -f -v` 
