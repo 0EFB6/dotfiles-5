@@ -138,7 +138,7 @@ Brightness = [
     )
 ]
 
-Romania_flag = [
+RomaniaFlag = [
     widget.TextBox(
         text='',
         font="Font Awesome 6 Free Solid",
@@ -286,7 +286,7 @@ widgets_top_screen1 = [
     Sep,
     *Battery,
     Sep,
-    *Romania_flag
+    *RomaniaFlag
 ]
 
 widgets_top_screen2 = [
@@ -295,7 +295,7 @@ widgets_top_screen2 = [
     Sep,
     *Battery,
     Sep,
-    *Romania_flag
+    *RomaniaFlag
 ]
 screens = [
     Screen(
