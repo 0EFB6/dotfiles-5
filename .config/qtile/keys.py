@@ -125,6 +125,8 @@ keys = [
         lazy.spawn("betterlockscreen -l dimblur")),
     Key([mod], "m",
         lazy.spawn("/home/ervin/.local/bin/start-spotify")),
+    Key([mod], "e",
+        lazy.spawn("/home/ervin/.config/eww/launch_eww")),
 
     # DE keys
     Key([], "Print",

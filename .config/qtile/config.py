@@ -1,15 +1,8 @@
-import subprocess
 import os
-from libqtile import bar, widget, qtile, hook
-from libqtile.config import (
-    Click,
-    Drag,
-    Group,
-    Key,
-    Screen,
-    DropDown,
-    ScratchPad
-)
+import subprocess
+
+from libqtile import bar, hook, qtile, widget
+from libqtile.config import Click, Drag, DropDown, Group, Key, ScratchPad, Screen  # noqa
 from libqtile.lazy import lazy
 
 from keys import keys, mod, terminal
@@ -84,7 +77,7 @@ Clock = [
     widget.WidgetBox(
         widgets=[
             widget.Clock(
-                format='%A, %B %d - ',
+                format='%d/%m/%Y - ',
                 padding=0,
                 foreground=colors_nord[6],
                 fontsize=17
@@ -94,13 +87,43 @@ Clock = [
         text_closed="\uf017 ",
         text_open="\uf017 ",
         font='Font Awesome 6 Free Solid',
-        fontsize=17
+        fontsize=17,
+        mouse_callbacks={'Button2':
+                         lambda: qtile.cmd_spawn("alacritty --hold -e cal")}
     ),
     widget.Clock(
         format='%H:%M',
         padding=0,
         foreground=colors_nord[6],
         fontsize=17
+    ),
+]
+
+Volume = [
+    widget.TextBox(
+        font='Font Awesome 6 Free Solid',
+        text="",
+        foreground=colors_nord[15]
+    ),
+    widget.Volume(
+        foreground=colors_nord[15],
+        mouse_callbacks={'Button3': lambda: qtile.cmd_spawn("pavucontrol")}
+    ),
+]
+
+KeyboardLayout = [
+    widget.TextBox(
+        font='Font Awesome 6 Free Solid',
+        text="",
+        fontsize=15,
+        foreground=colors_nord[14],
+        background=colors_nord[0],
+    ),
+    widget.KeyboardLayout(
+        configured_keyboards=["us", "ro std"],
+        display_map={'us': 'us', 'ro std': 'ro'},
+        foreground=colors_nord[14],
+        background=colors_nord[0],
     ),
 ]
 
@@ -138,57 +161,10 @@ Brightness = [
     )
 ]
 
-RomaniaFlag = [
-    widget.TextBox(
-        text='',
-        font="Font Awesome 6 Free Solid",
-        mouse_callbacks={'Button1': lambda: reload()},
-        foreground=colors_nord[10],
-        padding=0),
-    widget.Spacer(length=5),
-    widget.GenPollText(
-        update_interval=3600,
-        foreground=colors_nord[13],
-        func=lambda: subprocess.check_output(
-            "/home/ervin/.local/bin/uptime.sh").decode("utf-8")
-    ),
-    widget.Spacer(length=5),
-    widget.TextBox(
-        text="",
-        font="Font Awesome 6 Free Solid",
-        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('nwgbar')},
-        foreground=colors_nord[11]
-    ),
-    widget.Spacer(length=5)
-]
-
-Volume = [
-    widget.TextBox(
-        font='Font Awesome 6 Free Solid',
-        text="",
-        foreground=colors_nord[15]
-    ),
-    widget.Volume(
-        foreground=colors_nord[15],
-        mouse_callbacks={'Button3': lambda: qtile.cmd_spawn("pavucontrol")}
-    ),
-]
-
-KeyboardLayout = [
-    widget.TextBox(
-        font='Font Awesome 6 Free Solid',
-        text="",
-        fontsize=15,
-        foreground=colors_nord[14],
-        background=colors_nord[0],
-    ),
-    widget.KeyboardLayout(
-        configured_keyboards=["us", "ro std"],
-        display_map={'us': 'us', 'ro std': 'ro'},
-        foreground=colors_nord[14],
-        background=colors_nord[0],
-    ),
-]
+Systray = widget.Systray(
+    icon_size=18,
+    padding=3
+)
 
 Battery = [
     widget.Battery(
@@ -217,6 +193,30 @@ Battery = [
     ),
 ]
 
+RomaniaFlag = [
+    widget.TextBox(
+        text='',
+        font="Font Awesome 6 Free Solid",
+        mouse_callbacks={'Button1': lambda: reload()},
+        foreground=colors_nord[10],
+        padding=0),
+    widget.Spacer(length=5),
+    widget.GenPollText(
+        update_interval=3600,
+        foreground=colors_nord[13],
+        func=lambda: subprocess.check_output(
+            "/home/ervin/.local/bin/uptime.sh").decode("utf-8")
+    ),
+    widget.Spacer(length=5),
+    widget.TextBox(
+        text="",
+        font="Font Awesome 6 Free Solid",
+        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('nwgbar')},
+        foreground=colors_nord[11]
+    ),
+    widget.Spacer(length=5)
+]
+
 
 def no_text(text):
     return ''
@@ -231,7 +231,7 @@ common_widgets = [
     widget.Image(
         filename="/usr/share/pixmaps/archlinux-logo.svg",
         margin=5,
-        mouse_callbacks={'Button1': lambda: lazy.spawn(
+        mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
             "rofi -show drun -terminal alacritty -show-icons")}
     ),
     widget.Image(
@@ -279,10 +279,7 @@ widgets_top_screen1 = [
     Sep,
     *Brightness,
     Sep,
-    widget.Systray(
-        icon_size=16,
-        padding=3
-    ),
+    Systray,
     Sep,
     *Battery,
     Sep,
@@ -330,17 +327,17 @@ def assign_app_group(client):
 
     for i in range(len(d)):
         if wm_class in list(d.values())[i]:
-            group= list(d.keys())[i]
+            group = list(d.keys())[i]
             client.togroup(group)
             client.group.cmd_toscreen(toggle=False)
 
 
-follow_mouse_focus= True
-bring_front_click= False
-cursor_warp= False
-auto_fullscreen= True
-focus_on_window_activation= "smart"
-reconfigure_screens= True
-auto_minimize= True
-wl_input_rules= None
-wmname= "LG3D"
+follow_mouse_focus = True
+bring_front_click = False
+cursor_warp = True
+auto_fullscreen = True
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_minimize = True
+wl_input_rules = None
+wmname = "LG3D"

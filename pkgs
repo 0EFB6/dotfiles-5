@@ -56,6 +56,7 @@ edk2-ovmf
 efibootmgr
 eog
 evince
+eww-git
 exa
 expac
 fakeroot
@@ -286,7 +287,6 @@ soundfont-fluid
 speedtest-cli
 stacer
 strace
-sublime-merge
 sublime-text
 sudo
 sunwait
