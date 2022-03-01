@@ -1,4 +1,4 @@
-022-03-01 13:58:03,713 ERROR libqtile manager.py:process_key_event():L391 KB command error increase_ratio: No such command
+2022-03-01 13:58:03,713 ERROR libqtile manager.py:process_key_event():L391 KB command error increase_ratio: No such command
 2022-03-01 13:58:03,713 ERROR libqtile manager.py:process_key_event():L391 KB command error delete: No such command
 2022-03-01 13:58:03,944 ERROR libqtile manager.py:process_key_event():L391 KB command error grow_right: No such command
 2022-03-01 13:58:03,950 ERROR libqtile manager.py:process_key_event():L391 KB command error increase_ratio: No such command
