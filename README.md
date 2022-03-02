@@ -73,7 +73,6 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 </head>
 <body>
 	<h1>Directory Tree</h1><p>
-	<a href="www/src/mine/dotfiles">www/src/mine/dotfiles</a><br>
 	├── <a href="www/src/mine/dotfiles/Code%20New%20Roman%20Bold%20Nerd%20Font%20Complete%20Mono.otf">Code New Roman Bold Nerd Font Complete Mono.otf</a><br>
 	├── <a href="www/src/mine/dotfiles/.config/">.config</a><br>
 	│   ├── <a href="www/src/mine/dotfiles/.config/alacritty/">alacritty</a><br>
