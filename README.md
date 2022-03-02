@@ -46,31 +46,6 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 * `fc-cache -f -v`
 
 
-<!DOCTYPE html>
-<html>
-<head>
- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- <meta name="Author" content="Made by 'tree'">
- <meta name="GENERATOR" content="$Version: $ tree v2.0.2 (c) 1996 - 2022 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro $">
- <title>Directory Tree</title>
- <style type="text/css">
-  BODY { font-family : monospace, sans-serif;  color: black;}
-  P { font-family : monospace, sans-serif; color: black; margin:0px; padding: 0px;}
-  A:visited { text-decoration : none; margin : 0px; padding : 0px;}
-  A:link    { text-decoration : none; margin : 0px; padding : 0px;}
-  A:hover   { text-decoration: underline; background-color : yellow; margin : 0px; padding : 0px;}
-  A:active  { margin : 0px; padding : 0px;}
-  .VERSION { font-size: small; font-family : arial, sans-serif; }
-  .NORM  { color: black;  }
-  .FIFO  { color: purple; }
-  .CHAR  { color: yellow; }
-  .DIR   { color: blue;   }
-  .BLOCK { color: yellow; }
-  .LINK  { color: aqua;   }
-  .SOCK  { color: fuchsia;}
-  .EXEC  { color: green;  }
- </style>
-</head>
 <body>
 	<h1>Directory Tree</h1><p>
 	├── <a href="www/src/mine/dotfiles/Code%20New%20Roman%20Bold%20Nerd%20Font%20Complete%20Mono.otf">Code New Roman Bold Nerd Font Complete Mono.otf</a><br>
