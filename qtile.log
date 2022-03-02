@@ -13549,3 +13549,14 @@ Traceback (most recent call last):
   File "/home/ervin/.config/qtile/modules/groups.py", line 39, in assign_app_group
     wm_class = client.window.get_wm_class()[0]
 IndexError: list index out of range
+2022-03-02 23:52:10,246 ERROR libqtile base.py:on_done():L635 Failed to reschedule.
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/site-packages/libqtile/widget/base.py", line 627, in on_done
+    self.update(result)
+  File "/usr/lib/python3.10/site-packages/libqtile/widget/base.py", line 530, in update
+    old_width = self.layout.width
+  File "/usr/lib/python3.10/site-packages/libqtile/drawer.py", line 81, in width
+    return self.layout.get_pixel_size()[0]
+  File "/usr/lib/python3.10/site-packages/libqtile/pangocffi.py", line 138, in get_pixel_size
+    pango.pango_layout_get_pixel_size(self._pointer, width, height)
+TypeError: initializer for ctype 'PangoLayout *' must be a cdata pointer, not NoneType
