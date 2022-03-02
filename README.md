@@ -161,11 +161,10 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	├── <a href="/pkgs">pkgs</a><br>
 	├── <a href="/qtile.log">qtile.log</a><br>
 	├── <a href="/README.md">README.md</a><br>
-	├── <a href="/reflector.conf">reflector.conf</a><br>
-	└── <a href="/test">test</a><br>
+	└── <a href="/reflector.conf">reflector.conf</a><br>
 <br><br><p>
 
-17 directories, 96 files
+17 directories, 95 files
 
 </p>
 	<hr>
