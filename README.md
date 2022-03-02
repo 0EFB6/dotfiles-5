@@ -48,7 +48,7 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 <!DOCTYPE html>
 <html>
 <body>
-	<h1>Directory Tree</h1><p>
+	<h2>Directory Tree</h2><p>
 	<a href=""></a><br>
 	├── <a href="/Code%20New%20Roman%20Bold%20Nerd%20Font%20Complete%20Mono.otf">Code New Roman Bold Nerd Font Complete Mono.otf</a><br>
 	├── <a href="/.config/">.config</a><br>
