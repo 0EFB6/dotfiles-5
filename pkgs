@@ -154,9 +154,11 @@ jq
 kernel-modules-hook
 kguiaddons
 lazygit
+lf-bin
 libappindicator-gtk2
 libburn
 libdvdcss
+libertinus-font
 libinput-gestures
 libisoburn
 libisofs
@@ -226,6 +228,7 @@ onefetch
 openvpn
 otf2bdf
 pacgraph
+packettracer7
 pacman
 pacman-contrib
 pacutils
@@ -309,7 +312,6 @@ tracker
 tree
 ttf-font-awesome
 ttf-hanazono
-ttf-linux-libertine
 ttf-ms-fonts
 ttf-roboto
 unrar
