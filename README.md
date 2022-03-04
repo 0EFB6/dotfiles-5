@@ -81,6 +81,9 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	│   │   &nbsp;&nbsp;&nbsp; └── <a href="/.config/nwg-launchers/nwggrid/terminal">terminal</a><br>
 	│   ├── <a href="/.config/qtile/">qtile</a><br>
 	│   │   ├── <a href="/.config/qtile/config.py">config.py</a><br>
+	│   │   ├── <a href="/.config/qtile/logo-big.png">logo-big.png</a><br>
+	│   │   ├── <a href="/.config/qtile/logo.png">logo.png</a><br>
+	│   │   ├── <a href="/.config/qtile/logo.svg">logo.svg</a><br>
 	│   │   └── <a href="/.config/qtile/modules/">modules</a><br>
 	│   │   &nbsp;&nbsp;&nbsp; ├── <a href="/.config/qtile/modules/get_screens.py">get_screens.py</a><br>
 	│   │   &nbsp;&nbsp;&nbsp; ├── <a href="/.config/qtile/modules/groups.py">groups.py</a><br>
@@ -164,7 +167,7 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	└── <a href="/reflector.conf">reflector.conf</a><br>
 <br><br><p>
 
-17 directories, 95 files
+17 directories, 98 files
 
 </p>
 	<hr>

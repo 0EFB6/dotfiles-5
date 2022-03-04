@@ -6,16 +6,14 @@ pkill -KILL wallpaper
 pkill -KILL sleep
 # nitrogen --set-zoom-fill /home/ervin/Pictures/Wallpapers/Ai_Hayasaka_Holding_C_Programming_Language.jpg
 /home/ervin/.local/bin/wallpaper &
-/home/ervin/.local/bin/spotify-notification &
-blueman-applet &
-nm-applet & disown
-flameshot &
 xset s 600 &
 xss-lock -- betterlockscreen -l dimblur &
 /home/ervin/.config/conky/start_qtile.sh -n &
 picom -f --blur-method dual_kawase --blur-strength 1 --corner-radius 5 &
-/home/ervin/.local/bin/start-spotify &
-# sleep 5
-# dex ~/.local/share/applications/anbox/anbox-com-spotify-music.desktop &
-# google-chrome-beta --app=https://www.youtube.com &
-# albert &
+/home/ervin/.local/bin/spotify-notification &
+blueman-applet &
+nm-applet & disown
+flameshot &
+alacritty &
+firefox-esr &
+# /home/ervin/.local/bin/start-spotify &

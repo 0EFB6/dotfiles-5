@@ -1,16 +1,18 @@
 from os import path
 import subprocess
+
+
+try:
+    import aiomanhole
+except ImportError:
+    aiomanhole = None
+
 from libqtile import hook
 from modules.keys import keys
 from modules.groups import groups
 from modules.layouts import layouts, floating_layout
 from modules.mouse import mouse
 from modules.settings import widget_defaults, extension_defaults
-from modules.widgets import (
-    colors_nord,
-    primary_widgets,
-    secondary_widgets,
-)
 from modules.get_screens import screens
 assert keys
 assert groups
@@ -19,10 +21,15 @@ assert floating_layout
 assert mouse
 assert widget_defaults
 assert extension_defaults
-assert colors_nord
-assert primary_widgets
-assert secondary_widgets
 assert screens
+
+
+if aiomanhole:
+    @hook.subscribe.startup_complete
+    def set_manhole():
+        aiomanhole.start_manhole(
+        port=7113,
+        namespace={"qtile": qtile})  # noqa
 
 
 @hook.subscribe.startup_once

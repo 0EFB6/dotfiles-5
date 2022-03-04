@@ -126,6 +126,8 @@ keys = [
         lazy.spawn("/home/ervin/.local/bin/start-spotify")),
     Key([mod], "e",
         lazy.spawn("/home/ervin/.config/eww/launch_eww")),
+    Key([mod], "c",
+        lazy.spawn("/home/ervin/.config/conky/start_qtile.sh -n")),
 
     # DE keys
     Key([], "Print",

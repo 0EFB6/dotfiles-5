@@ -33,6 +33,8 @@ d[group_names[0]] = [
     "evince",
 ]
 d[group_names[1]] = [
+    "brave-browser",
+    "Brave-browser",
     "Firefox",
     "firefox",
     "Navigator",

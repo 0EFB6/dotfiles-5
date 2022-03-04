@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd /home/ervin/www/src/mine/dotfiles/
+
+sed -i '/<!DOCTYPE html>/,/<\/html>/d' README.md
+tree -aH "" -I __pycache__ -I .git  >> README.md
+sed -i '/<head>/,/<\/head>/d' README.md
+sed -i 's/h1/h2/g' README.md
