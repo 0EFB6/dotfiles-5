@@ -15,5 +15,6 @@ blueman-applet &
 nm-applet & disown
 flameshot &
 alacritty &
-firefox-esr &
+firefox &
+optimus-manager-qt &
 # /home/ervin/.local/bin/start-spotify &

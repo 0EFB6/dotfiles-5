@@ -8,8 +8,8 @@ alt = "mod1"
 terminal = "alacritty"
 
 # Groups
-group_names = 'coding www social settings etc media'.split()
-group_labels = ["", "", "", "", "", ""]
+group_names = 'coding www social etc settings media'.split()
+group_labels = ["", "", "", "", "", ""]
 group_layouts = ["monadwide", "max", "max", "bsp", "bsp", "monadthreecol"]
 
 # Widgets

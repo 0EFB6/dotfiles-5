@@ -1,5 +1,8 @@
+import re
 import subprocess
-from libqtile import bar, qtile, widget
+
+from libqtile import bar, qtile, widget, hook
+from libqtile.lazy import lazy
 from .settings import colors
 
 
@@ -10,6 +13,22 @@ def no_text(text):
 def reload():
     qtile.cmd_reload_config()
     qtile.cmd_spawn('/home/ervin/.local/bin/change_wallpaper')
+
+
+curl = ["curl", "-s", 'wttr.in/?format="%c+%t"']
+
+
+@hook.subscribe.focus_change
+def weather_color():
+    weather = subprocess.check_output(
+        ["curl", "-s", 'wttr.in/?format="%c+%t"']).decode("utf-8")
+    degrees = re.findall(
+        r'[-+]?[.]?[\d]+(?:,\d\d\d)*[\.]?\d*(?:[eE][-+]?\d+)?', weather)
+    if degrees[0][0] == "+":
+        color = colors[13]
+    else:
+        color = colors[7]
+    return color
 
 
 def primary_widgets():
@@ -31,16 +50,7 @@ def primary_widgets():
             filename="/usr/share/icons/Papirus/64x64/apps/python.svg",
             margin=5,
             mouse_callbacks={'Button1': lambda: qtile.cmd_spawn(
-                "subl /home/ervin/.config/qtile/config.py\
-                 /home/ervin/.config/qtile/modules/groups.py\
-                 /home/ervin/.config/qtile/modules/matches.py\
-                 /home/ervin/.config/qtile/modules/layouts.py\
-                 /home/ervin/.config/qtile/modules/mouse.py\
-                 /home/ervin/.config/qtile/modules/settings.py\
-                 /home/ervin/.config/qtile/modules/get_screens.py\
-                 /home/ervin/.config/qtile/modules/keys.py\
-                 /home/ervin/.config/qtile/modules/widgets.py"
-            )}
+                "subl /home/ervin/.config/qtile/config.py")}
         ),
         widget.TextBox(
             text='/',
@@ -76,12 +86,11 @@ def primary_widgets():
         ),
         widget.TaskList(
             parse_text=no_text,
-            highlight_method='block',
+            # highlight_method='block',
             icon_size=19,
             border=colors[3],
-            margin=5,
             rounded=False,
-            padding_x=3
+            padding=1
         ),
         widget.WidgetBox(
             widgets=[
@@ -226,6 +235,20 @@ def primary_widgets():
             subprocess.check_output(
                 "/home/ervin/.local/bin/bat_charging_icon"
             ).decode('utf-8')),
+        widget.TextBox(
+            text='/',
+            foreground=colors[3],
+            background=colors[0],
+            padding=0,
+            fontsize=35
+        ),
+        widget.GenPollText(
+            update_interval=900,
+            foreground=weather_color(),
+            # font="Font Awesome 6 Free Solid",
+            func=lambda: subprocess.check_output(curl).decode(
+                "utf-8").strip('"').replace(" ", "")
+        ),
         widget.TextBox(
             text='/',
             foreground=colors[3],

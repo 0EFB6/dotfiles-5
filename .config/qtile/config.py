@@ -1,11 +1,6 @@
-from os import path
 import subprocess
-
-
-try:
-    import aiomanhole
-except ImportError:
-    aiomanhole = None
+import aiomanhole
+from os import path
 
 from libqtile import hook
 from modules.keys import keys
@@ -29,7 +24,7 @@ if aiomanhole:
     def set_manhole():
         aiomanhole.start_manhole(
         port=7113,
-        namespace={"qtile": qtile})  # noqa
+        namespace={"qtile": "qtile"})  # noqa
 
 
 @hook.subscribe.startup_once

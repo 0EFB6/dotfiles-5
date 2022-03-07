@@ -8,7 +8,7 @@ function get_brightness {
 }
 
 function send_notification {
-  icon="/usr/share/icons/Papirus/16x16/actions/brightnesssettings.svg"
+  icon="/usr/share/icons/Papirus-Dark/24x24/actions/xfpm-brightness-lcd.svg"
   brightness=$(get_brightness)
   # Send the notification
   dunstify -I "$icon" -a "brightness" -r 5555 -u low \
@@ -23,6 +23,10 @@ case $1 in
     ;;
   down)
     # decrease the backlight by 10%
-    if [ "$(get_brightness)" -gt 10 ];then brightnessctl s 10%-;send_notification; fi
+    if [ "$(get_brightness)" -gt 10 ]
+    then 
+      brightnessctl s 10%-
+      send_notification
+    fi
     ;;
 esac

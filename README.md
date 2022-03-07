@@ -132,6 +132,7 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/cpu_temp">cpu_temp</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/display_center">display_center</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/dot-backup">dot-backup</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/dots-dir-tree">dots-dir-tree</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/find_hardlink">find_hardlink</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/hard_usage">hard_usage</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/libinput-gestures-start">libinput-gestures-start</a><br>
@@ -143,6 +144,7 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/pkglist-backup">pkglist-backup</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/qtile_keybinds">qtile_keybinds</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/qtile_key_pdf">qtile_key_pdf</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/ram_usage">ram_usage</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/rmshit.py">rmshit.py</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/rofi-power-menu">rofi-power-menu</a><br>
 	│   &nbsp;&nbsp;&nbsp; ├── <a href="/.local/bin/spotify-notification">spotify-notification</a><br>
@@ -167,7 +169,7 @@ yay -S alacritty betterlockscreen conky cpupower eog exa fet.sh-git google-chrom
 	└── <a href="/reflector.conf">reflector.conf</a><br>
 <br><br><p>
 
-17 directories, 98 files
+17 directories, 100 files
 
 </p>
 	<hr>

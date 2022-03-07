@@ -48,6 +48,9 @@ d[group_names[2]] = [
     "ferdi",
 ]
 d[group_names[3]] = [
+    "VirtualBox Manager"
+]
+d[group_names[4]] = [
     "gnome-control-center",
     "blueman-manager",
     "nitrogen",
@@ -55,8 +58,6 @@ d[group_names[3]] = [
     "Xfce4-power-manager-settings",
     "pavucontrol",
     "lxappearance"
-]
-d[group_names[4]] = [
 ]
 d[group_names[5]] = [
     "www.youtube.com",

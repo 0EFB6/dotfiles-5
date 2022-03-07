@@ -17,6 +17,7 @@ autoconf
 automake
 base
 bat
+bbswitch-dkms
 bc
 bdf2psf
 betterlockscreen
@@ -33,6 +34,7 @@ bluez-plugins
 bluez-rfcomm
 bluez-tools
 bluez-utils
+bpytop
 brave-bin
 brightnessctl
 brother-mfc-7460dn
@@ -55,6 +57,7 @@ cronie
 cups
 dconf-editor
 dex
+dirbuster
 dkms
 dmenu
 dnsmasq
@@ -75,7 +78,7 @@ figlet
 file
 file-roller
 findutils
-firefox-esr-bin
+firefox-bin
 flameshot-git
 flex
 fortune-mod
@@ -232,11 +235,17 @@ noto-fonts-emoji
 npm
 ntfs-3g
 ntp
+nvidia-dkms
+nvidia-prime
+nvidia-settings
+nvidia-utils
 nwg-launchers
 obs-studio
 octave
 onefetch
 openvpn
+optimus-manager
+optimus-manager-qt
 otf2bdf
 pacgraph
 pacman
@@ -278,7 +287,6 @@ python-pip
 python-pybluez
 python-pywlroots
 python-ruamel-yaml
-qbittorrent
 qemu
 qemu-arch-extra
 qt5-charts
@@ -325,14 +333,15 @@ tlp
 tmux
 toilet
 tracker
+transmission-gtk
 tree
 ttf-font-awesome
 ttf-hanazono
 ttf-ms-fonts
 ttf-roboto
+unclutter
 unrar
 usbutils
-vim
 virt-manager
 virtualbox
 virtualbox-ext-oracle
