@@ -1,18 +1,17 @@
-bar {
-    margin: 0px; /* affects top/bottom & left/right alignment */
+#bar {
+   margin: 0px; /* affects top/bottom & left/right alignment */
 }
 
 button, image {
     background: none;
-    border-style: none;
+    border-style: dotted;
     box-shadow: none;
-    color: #2e3440;
 }
 
 button {
     padding-left: 10px;
     padding-right: 10px;
-    margin: 0px
+    margin: 0px;
 }
 
 button:hover {
@@ -20,9 +19,7 @@ button:hover {
 }
 
 button:focus {
-    box-shadow: 0 0 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px;
 }
 
-grid {
-    /* e.g. for common background to all buttons */
-}
