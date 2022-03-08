@@ -109,7 +109,7 @@ keys = [
     Key([mod], "space",
         lazy.spawn("rofi -show drun -terminal alacritty -show-icons")),
     Key([mod], "x",
-        lazy.spawn("nwgbar")),
+        lazy.spawn("nwgbar -b 2e3440 -o 0.1")),
     Key([mod], "b",
         lazy.spawn("google-chrome-beta")),
     Key([mod], "t",

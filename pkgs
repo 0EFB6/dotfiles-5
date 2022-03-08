@@ -373,6 +373,7 @@ xorg-xbacklight
 xorg-xev
 xorg-xinit
 xorg-xrandr
+xorg-xrdb
 xorg-xsetroot
 xorg-xvinfo
 xorg-xwd
